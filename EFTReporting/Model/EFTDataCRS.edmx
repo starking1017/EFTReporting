@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PCLAW_FRSReportsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PCLAW_FRSReports.dbo.APVendLi_tbl_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="APVendLi_tbl_vw">
+          <Key>
+            <PropertyRef Name="APVendorListID" />
+          </Key>
+          <Property Name="APVendorListStatus" Type="tinyint" />
+          <Property Name="APVendorListID" Type="bigint" Nullable="false" />
+          <Property Name="APVendorListNickName" Type="varchar" MaxLength="20" />
+          <Property Name="APVendorListSortName" Type="varchar" MaxLength="40" />
+          <Property Name="APVendorListPersonID" Type="bigint" />
+          <Property Name="APVendorListDiscDays1" Type="int" />
+          <Property Name="APVendorListDiscPct1" Type="real" />
+          <Property Name="APVendorListDiscDays2" Type="int" />
+          <Property Name="APVendorListDiscPct2" Type="real" />
+          <Property Name="APVendorListDiscDays3" Type="int" />
+          <Property Name="APVendorListDiscPct3" Type="real" />
+          <Property Name="APVendorListTotPurch" Type="float" />
+          <Property Name="APVendorListTotPybl" Type="float" />
+          <Property Name="APVendorListTotDisc" Type="float" />
+          <Property Name="APVendorListNextDueDate" Type="bigint" />
+          <Property Name="APVendorListActiveFlag" Type="int" />
+          <Property Name="APVendorListDefGLAcctID" Type="bigint" />
+          <Property Name="APVendorListDefActCode" Type="bigint" />
+          <Property Name="APVendorListDefGSTCat" Type="int" />
+          <Property Name="APVendorList1099BoxNum" Type="bigint" />
+          <Property Name="APVendorListExtraID1" Type="bigint" />
+          <Property Name="APVendorListExtraID2" Type="bigint" />
+          <Property Name="APVendorListExtraDbl" Type="float" />
+          <Property Name="APVendorListNotes" Type="varchar" MaxLength="80" />
+          <Property Name="APVendorListType1099" Type="varchar" MaxLength="10" />
+          <Property Name="APVendorListID1099" Type="varchar" MaxLength="14" />
+          <Property Name="APVendorListAcctNum" Type="varchar" MaxLength="30" />
+          <Property Name="APVendorListTerms" Type="varchar" MaxLength="30" />
+          <Property Name="APVendorListExtraString" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PCLAW_FRSReports.dbo.EFT_Reporting_VendorList_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EFT_Reporting_VendorList_vw">
+          <Key>
+            <PropertyRef Name="APVendorListID" />
+          </Key>
+          <Property Name="APVendorListID" Type="bigint" Nullable="false" />
+          <Property Name="APVendorListSortName" Type="varchar" MaxLength="40" />
+          <Property Name="AddressInfoAddrLine1" Type="varchar" MaxLength="3000" />
+          <Property Name="AddressInfoAddrLine2" Type="varchar" MaxLength="3000" />
+          <Property Name="AddressInfoCity" Type="varchar" MaxLength="3000" />
+          <Property Name="AddressInfoProv" Type="varchar" MaxLength="3000" />
+          <Property Name="AddressInfoCode" Type="varchar" MaxLength="3000" />
+          <Property Name="AddressInfoCountry" Type="varchar" MaxLength="3000" />
+        </EntityType>
+        <Function Name="EFT_Reporting_AccountPaymentDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VendorID" Type="int" Mode="In" />
+          <Parameter Name="PayDate" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="PCLAW_FRSReportsModelStoreContainer">
+          <EntitySet Name="APVendLi_tbl_vw" EntityType="Self.APVendLi_tbl_vw" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [APVendLi_tbl_vw].[APVendorListStatus] AS [APVendorListStatus], 
+    [APVendLi_tbl_vw].[APVendorListID] AS [APVendorListID], 
+    [APVendLi_tbl_vw].[APVendorListNickName] AS [APVendorListNickName], 
+    [APVendLi_tbl_vw].[APVendorListSortName] AS [APVendorListSortName], 
+    [APVendLi_tbl_vw].[APVendorListPersonID] AS [APVendorListPersonID], 
+    [APVendLi_tbl_vw].[APVendorListDiscDays1] AS [APVendorListDiscDays1], 
+    [APVendLi_tbl_vw].[APVendorListDiscPct1] AS [APVendorListDiscPct1], 
+    [APVendLi_tbl_vw].[APVendorListDiscDays2] AS [APVendorListDiscDays2], 
+    [APVendLi_tbl_vw].[APVendorListDiscPct2] AS [APVendorListDiscPct2], 
+    [APVendLi_tbl_vw].[APVendorListDiscDays3] AS [APVendorListDiscDays3], 
+    [APVendLi_tbl_vw].[APVendorListDiscPct3] AS [APVendorListDiscPct3], 
+    [APVendLi_tbl_vw].[APVendorListTotPurch] AS [APVendorListTotPurch], 
+    [APVendLi_tbl_vw].[APVendorListTotPybl] AS [APVendorListTotPybl], 
+    [APVendLi_tbl_vw].[APVendorListTotDisc] AS [APVendorListTotDisc], 
+    [APVendLi_tbl_vw].[APVendorListNextDueDate] AS [APVendorListNextDueDate], 
+    [APVendLi_tbl_vw].[APVendorListActiveFlag] AS [APVendorListActiveFlag], 
+    [APVendLi_tbl_vw].[APVendorListDefGLAcctID] AS [APVendorListDefGLAcctID], 
+    [APVendLi_tbl_vw].[APVendorListDefActCode] AS [APVendorListDefActCode], 
+    [APVendLi_tbl_vw].[APVendorListDefGSTCat] AS [APVendorListDefGSTCat], 
+    [APVendLi_tbl_vw].[APVendorList1099BoxNum] AS [APVendorList1099BoxNum], 
+    [APVendLi_tbl_vw].[APVendorListExtraID1] AS [APVendorListExtraID1], 
+    [APVendLi_tbl_vw].[APVendorListExtraID2] AS [APVendorListExtraID2], 
+    [APVendLi_tbl_vw].[APVendorListExtraDbl] AS [APVendorListExtraDbl], 
+    [APVendLi_tbl_vw].[APVendorListNotes] AS [APVendorListNotes], 
+    [APVendLi_tbl_vw].[APVendorListType1099] AS [APVendorListType1099], 
+    [APVendLi_tbl_vw].[APVendorListID1099] AS [APVendorListID1099], 
+    [APVendLi_tbl_vw].[APVendorListAcctNum] AS [APVendorListAcctNum], 
+    [APVendLi_tbl_vw].[APVendorListTerms] AS [APVendorListTerms], 
+    [APVendLi_tbl_vw].[APVendorListExtraString] AS [APVendorListExtraString]
+    FROM [dbo].[APVendLi_tbl_vw] AS [APVendLi_tbl_vw]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EFT_Reporting_VendorList_vw" EntityType="Self.EFT_Reporting_VendorList_vw" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EFT_Reporting_VendorList_vw].[APVendorListID] AS [APVendorListID], 
+    [EFT_Reporting_VendorList_vw].[APVendorListSortName] AS [APVendorListSortName], 
+    [EFT_Reporting_VendorList_vw].[AddressInfoAddrLine1] AS [AddressInfoAddrLine1], 
+    [EFT_Reporting_VendorList_vw].[AddressInfoAddrLine2] AS [AddressInfoAddrLine2], 
+    [EFT_Reporting_VendorList_vw].[AddressInfoCity] AS [AddressInfoCity], 
+    [EFT_Reporting_VendorList_vw].[AddressInfoProv] AS [AddressInfoProv], 
+    [EFT_Reporting_VendorList_vw].[AddressInfoCode] AS [AddressInfoCode], 
+    [EFT_Reporting_VendorList_vw].[AddressInfoCountry] AS [AddressInfoCountry]
+    FROM [dbo].[EFT_Reporting_VendorList_vw] AS [EFT_Reporting_VendorList_vw]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PCLAW_FRSReportsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="APVendLi_tbl_vw">
+          <Key>
+            <PropertyRef Name="APVendorListID" />
+          </Key>
+          <Property Name="APVendorListStatus" Type="Byte" />
+          <Property Name="APVendorListID" Type="Int64" Nullable="false" />
+          <Property Name="APVendorListNickName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListSortName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListPersonID" Type="Int64" />
+          <Property Name="APVendorListDiscDays1" Type="Int32" />
+          <Property Name="APVendorListDiscPct1" Type="Single" />
+          <Property Name="APVendorListDiscDays2" Type="Int32" />
+          <Property Name="APVendorListDiscPct2" Type="Single" />
+          <Property Name="APVendorListDiscDays3" Type="Int32" />
+          <Property Name="APVendorListDiscPct3" Type="Single" />
+          <Property Name="APVendorListTotPurch" Type="Double" />
+          <Property Name="APVendorListTotPybl" Type="Double" />
+          <Property Name="APVendorListTotDisc" Type="Double" />
+          <Property Name="APVendorListNextDueDate" Type="Int64" />
+          <Property Name="APVendorListActiveFlag" Type="Int32" />
+          <Property Name="APVendorListDefGLAcctID" Type="Int64" />
+          <Property Name="APVendorListDefActCode" Type="Int64" />
+          <Property Name="APVendorListDefGSTCat" Type="Int32" />
+          <Property Name="APVendorList1099BoxNum" Type="Int64" />
+          <Property Name="APVendorListExtraID1" Type="Int64" />
+          <Property Name="APVendorListExtraID2" Type="Int64" />
+          <Property Name="APVendorListExtraDbl" Type="Double" />
+          <Property Name="APVendorListNotes" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListType1099" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListID1099" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListAcctNum" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListTerms" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="APVendorListExtraString" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="PCLAW_FRSReportsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APVendLi_tbl_vw" EntityType="Self.APVendLi_tbl_vw" />
+          <FunctionImport Name="EFT_Reporting_AccountPaymentDetail" ReturnType="Collection(PCLAW_FRSReportsModel.EFT_Reporting_AccountPaymentDetail_Result)">
+            <Parameter Name="VendorID" Mode="In" Type="Int32" />
+            <Parameter Name="PayDate" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="EFT_Reporting_VendorList_vw" EntityType="PCLAW_FRSReportsModel.EFT_Reporting_VendorList_vw" />
+        </EntityContainer>
+        <ComplexType Name="EFT_Reporting_AccountPaymentDetail_Result">
+          <Property Type="String" Name="GBankCommInfPaidTo" Nullable="true" MaxLength="900" />
+          <Property Type="Int64" Name="GBankCommInfDate" Nullable="true" />
+          <Property Type="Int64" Name="APInvoiceEntryDate" Nullable="true" />
+          <Property Type="String" Name="APInvoiceInvNumr" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="APInvoiceTotPaid" Nullable="true" />
+          <Property Type="String" Name="GBankCommInfCheck" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="APInvoiceID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="EFT_Reporting_VendorList_vw">
+          <Key>
+            <PropertyRef Name="APVendorListID" />
+          </Key>
+          <Property Name="APVendorListID" Type="Int64" Nullable="false" />
+          <Property Name="APVendorListSortName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="AddressInfoAddrLine1" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="AddressInfoAddrLine2" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="AddressInfoCity" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="AddressInfoProv" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="AddressInfoCode" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="AddressInfoCountry" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PCLAW_FRSReportsModelStoreContainer" CdmEntityContainer="PCLAW_FRSReportsEntities">
+          <EntitySetMapping Name="APVendLi_tbl_vw">
+            <EntityTypeMapping TypeName="PCLAW_FRSReportsModel.APVendLi_tbl_vw">
+              <MappingFragment StoreEntitySet="APVendLi_tbl_vw">
+                <ScalarProperty Name="APVendorListStatus" ColumnName="APVendorListStatus" />
+                <ScalarProperty Name="APVendorListID" ColumnName="APVendorListID" />
+                <ScalarProperty Name="APVendorListNickName" ColumnName="APVendorListNickName" />
+                <ScalarProperty Name="APVendorListSortName" ColumnName="APVendorListSortName" />
+                <ScalarProperty Name="APVendorListPersonID" ColumnName="APVendorListPersonID" />
+                <ScalarProperty Name="APVendorListDiscDays1" ColumnName="APVendorListDiscDays1" />
+                <ScalarProperty Name="APVendorListDiscPct1" ColumnName="APVendorListDiscPct1" />
+                <ScalarProperty Name="APVendorListDiscDays2" ColumnName="APVendorListDiscDays2" />
+                <ScalarProperty Name="APVendorListDiscPct2" ColumnName="APVendorListDiscPct2" />
+                <ScalarProperty Name="APVendorListDiscDays3" ColumnName="APVendorListDiscDays3" />
+                <ScalarProperty Name="APVendorListDiscPct3" ColumnName="APVendorListDiscPct3" />
+                <ScalarProperty Name="APVendorListTotPurch" ColumnName="APVendorListTotPurch" />
+                <ScalarProperty Name="APVendorListTotPybl" ColumnName="APVendorListTotPybl" />
+                <ScalarProperty Name="APVendorListTotDisc" ColumnName="APVendorListTotDisc" />
+                <ScalarProperty Name="APVendorListNextDueDate" ColumnName="APVendorListNextDueDate" />
+                <ScalarProperty Name="APVendorListActiveFlag" ColumnName="APVendorListActiveFlag" />
+                <ScalarProperty Name="APVendorListDefGLAcctID" ColumnName="APVendorListDefGLAcctID" />
+                <ScalarProperty Name="APVendorListDefActCode" ColumnName="APVendorListDefActCode" />
+                <ScalarProperty Name="APVendorListDefGSTCat" ColumnName="APVendorListDefGSTCat" />
+                <ScalarProperty Name="APVendorList1099BoxNum" ColumnName="APVendorList1099BoxNum" />
+                <ScalarProperty Name="APVendorListExtraID1" ColumnName="APVendorListExtraID1" />
+                <ScalarProperty Name="APVendorListExtraID2" ColumnName="APVendorListExtraID2" />
+                <ScalarProperty Name="APVendorListExtraDbl" ColumnName="APVendorListExtraDbl" />
+                <ScalarProperty Name="APVendorListNotes" ColumnName="APVendorListNotes" />
+                <ScalarProperty Name="APVendorListType1099" ColumnName="APVendorListType1099" />
+                <ScalarProperty Name="APVendorListID1099" ColumnName="APVendorListID1099" />
+                <ScalarProperty Name="APVendorListAcctNum" ColumnName="APVendorListAcctNum" />
+                <ScalarProperty Name="APVendorListTerms" ColumnName="APVendorListTerms" />
+                <ScalarProperty Name="APVendorListExtraString" ColumnName="APVendorListExtraString" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EFT_Reporting_AccountPaymentDetail" FunctionName="PCLAW_FRSReportsModel.Store.EFT_Reporting_AccountPaymentDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PCLAW_FRSReportsModel.EFT_Reporting_AccountPaymentDetail_Result">
+                <ScalarProperty Name="GBankCommInfPaidTo" ColumnName="GBankCommInfPaidTo" />
+                <ScalarProperty Name="GBankCommInfDate" ColumnName="GBankCommInfDate" />
+                <ScalarProperty Name="APInvoiceEntryDate" ColumnName="APInvoiceEntryDate" />
+                <ScalarProperty Name="APInvoiceInvNumr" ColumnName="APInvoiceInvNumr" />
+                <ScalarProperty Name="APInvoiceTotPaid" ColumnName="APInvoiceTotPaid" />
+                <ScalarProperty Name="GBankCommInfCheck" ColumnName="GBankCommInfCheck" />
+                <ScalarProperty Name="APInvoiceID" ColumnName="APInvoiceID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="EFT_Reporting_VendorList_vw">
+            <EntityTypeMapping TypeName="PCLAW_FRSReportsModel.EFT_Reporting_VendorList_vw">
+              <MappingFragment StoreEntitySet="EFT_Reporting_VendorList_vw">
+                <ScalarProperty Name="AddressInfoCountry" ColumnName="AddressInfoCountry" />
+                <ScalarProperty Name="AddressInfoCode" ColumnName="AddressInfoCode" />
+                <ScalarProperty Name="AddressInfoProv" ColumnName="AddressInfoProv" />
+                <ScalarProperty Name="AddressInfoCity" ColumnName="AddressInfoCity" />
+                <ScalarProperty Name="AddressInfoAddrLine2" ColumnName="AddressInfoAddrLine2" />
+                <ScalarProperty Name="AddressInfoAddrLine1" ColumnName="AddressInfoAddrLine1" />
+                <ScalarProperty Name="APVendorListSortName" ColumnName="APVendorListSortName" />
+                <ScalarProperty Name="APVendorListID" ColumnName="APVendorListID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

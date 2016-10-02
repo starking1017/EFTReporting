@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ContactInformation">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyFullName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyStreetAddress" Type="varchar(max)" />
+          <Property Name="CompanyCity" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyProvince" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyPostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyPhone" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyFax" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyEmail" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyAccountingEmail" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EFTAdmin">
+          <Key>
+            <PropertyRef Name="PclawDb" />
+            <PropertyRef Name="PclawVendorNo" />
+          </Key>
+          <Property Name="PclawDb" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PclawVendorNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PclawVendorName" Type="varchar" MaxLength="100" />
+          <Property Name="EFTStartupDate" Type="datetime" />
+          <Property Name="LegalCompanyName" Type="varchar" MaxLength="100" />
+          <Property Name="VendorName" Type="varchar" MaxLength="100" />
+          <Property Name="VendorAddress1" Type="varchar" MaxLength="100" />
+          <Property Name="VendorAddress2" Type="varchar" MaxLength="100" />
+          <Property Name="VendorCity" Type="varchar" MaxLength="50" />
+          <Property Name="VendorProvince" Type="varchar" MaxLength="50" />
+          <Property Name="VendorPostal" Type="varchar" MaxLength="50" />
+          <Property Name="BankAddress1" Type="varchar" MaxLength="100" />
+          <Property Name="BankAddress2" Type="varchar" MaxLength="100" />
+          <Property Name="BankCity" Type="varchar" MaxLength="50" />
+          <Property Name="BankProvince" Type="varchar" MaxLength="50" />
+          <Property Name="BankPostal" Type="varchar" MaxLength="50" />
+          <Property Name="FinancialInstitute" Type="varchar" MaxLength="100" />
+          <Property Name="TransitNo" Type="varchar" MaxLength="50" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="50" />
+          <Property Name="RemittanceEmail" Type="varchar" MaxLength="50" />
+          <Property Name="IsDeActivate" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SDSModelStoreContainer">
+          <EntitySet Name="ContactInformation" EntityType="Self.ContactInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EFTAdmin" EntityType="Self.EFTAdmin" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EFTAdmin">
+          <Key>
+            <PropertyRef Name="PclawDb" />
+            <PropertyRef Name="PclawVendorNo" />
+          </Key>
+          <Property Name="PclawDb" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PclawVendorNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PclawVendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EFTStartupDate" Type="DateTime" Precision="3" />
+          <Property Name="LegalCompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VendorAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VendorAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VendorCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BankAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BankCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialInstitute" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TransitNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RemittanceEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeActivate" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SDSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EFTAdmins" EntityType="Self.EFTAdmin" />
+          <EntitySet Name="ContactInformations" EntityType="SDSModel.ContactInformation" />
+        </EntityContainer>
+        <EntityType Name="ContactInformation">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyFullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyStreetAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyFax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAccountingEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SDSModelStoreContainer" CdmEntityContainer="SDSEntities">
+          <EntitySetMapping Name="EFTAdmins">
+            <EntityTypeMapping TypeName="SDSModel.EFTAdmin">
+              <MappingFragment StoreEntitySet="EFTAdmin">
+                <ScalarProperty Name="PclawDb" ColumnName="PclawDb" />
+                <ScalarProperty Name="PclawVendorNo" ColumnName="PclawVendorNo" />
+                <ScalarProperty Name="PclawVendorName" ColumnName="PclawVendorName" />
+                <ScalarProperty Name="EFTStartupDate" ColumnName="EFTStartupDate" />
+                <ScalarProperty Name="LegalCompanyName" ColumnName="LegalCompanyName" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="VendorAddress1" ColumnName="VendorAddress1" />
+                <ScalarProperty Name="VendorAddress2" ColumnName="VendorAddress2" />
+                <ScalarProperty Name="VendorCity" ColumnName="VendorCity" />
+                <ScalarProperty Name="VendorProvince" ColumnName="VendorProvince" />
+                <ScalarProperty Name="VendorPostal" ColumnName="VendorPostal" />
+                <ScalarProperty Name="BankAddress1" ColumnName="BankAddress1" />
+                <ScalarProperty Name="BankAddress2" ColumnName="BankAddress2" />
+                <ScalarProperty Name="BankCity" ColumnName="BankCity" />
+                <ScalarProperty Name="BankProvince" ColumnName="BankProvince" />
+                <ScalarProperty Name="BankPostal" ColumnName="BankPostal" />
+                <ScalarProperty Name="FinancialInstitute" ColumnName="FinancialInstitute" />
+                <ScalarProperty Name="TransitNo" ColumnName="TransitNo" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="RemittanceEmail" ColumnName="RemittanceEmail" />
+                <ScalarProperty Name="IsDeActivate" ColumnName="IsDeActivate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactInformations">
+            <EntityTypeMapping TypeName="SDSModel.ContactInformation">
+              <MappingFragment StoreEntitySet="ContactInformation">
+                <ScalarProperty Name="CompanyAccountingEmail" ColumnName="CompanyAccountingEmail" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyFax" ColumnName="CompanyFax" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="CompanyPostalCode" ColumnName="CompanyPostalCode" />
+                <ScalarProperty Name="CompanyProvince" ColumnName="CompanyProvince" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyStreetAddress" ColumnName="CompanyStreetAddress" />
+                <ScalarProperty Name="CompanyFullName" ColumnName="CompanyFullName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

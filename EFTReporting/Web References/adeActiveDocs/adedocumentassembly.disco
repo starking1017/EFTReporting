@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://cgybackup/activedocsdev/adedocumentassembly.asmx?wsdl" docRef="http://cgybackup/activedocsdev/adedocumentassembly.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://cgybackup/activedocsdev/adedocumentassembly.asmx" xmlns:q1="http://www.activedocs.com/webservices/adeDocumentAssembly" binding="q1:adeDocumentAssemblySoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://cgybackup/activedocsdev/adedocumentassembly.asmx" xmlns:q2="http://www.activedocs.com/webservices/adeDocumentAssembly" binding="q2:adeDocumentAssemblySoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

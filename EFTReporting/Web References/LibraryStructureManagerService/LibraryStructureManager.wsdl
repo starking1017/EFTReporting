@@ -1,0 +1,3031 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://filehold.com/librarymanager/librarystructuremanager/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://filehold.com/userrolemanager/usergroupmanager/" xmlns:s3="http://filehold.com/userrolemanager/internalservice/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://filehold.com/librarymanager/librarystructuremanager/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/librarymanager/librarystructuremanager/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:import namespace="http://filehold.com/userrolemanager/usergroupmanager/" />
+      <s:import namespace="http://filehold.com/userrolemanager/internalservice/" />
+      <s:element name="GetTreeStructure">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTreeStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTreeStructureResult" type="tns:ArrayOfCabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCabinet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cabinet" nillable="true" type="tns:Cabinet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cabinet">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LibraryStructureObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MembersInRoles" type="tns:ArrayOfMemberInRole" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultSchema" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Drawers" type="tns:ArrayOfDrawer" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanAddFolderGroup" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanChangeFolderOwner" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanAddDrawer" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowAddDrawer" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="OwnerGuid" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="PopulateSecurityPermissions" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="AutoTagging" type="tns:AutoTagging" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LibraryStructureObject" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsArchive" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentCabinetId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Expanded" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanEdit" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowEdit" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanChangeOwner" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanDelete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowDelete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanCopy" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowCopy" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanClone" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowClone" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanArchive" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowArchive" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Folder">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LibraryStructureObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CategoryId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OwnerGuid" type="s1:guid" />
+              <s:element minOccurs="0" maxOccurs="1" name="MembersInRoles" type="tns:ArrayOfMemberInRole" />
+              <s:element minOccurs="1" maxOccurs="1" name="HasRestrictedRights" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Selected" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanAddModifyDocument" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanEditReadOnlyFields" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanMoveDocumentTo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanMove" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowMove" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="AlertMeOfChanges" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="InheritSecurityPermissions" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="GeneralPermissions" type="tns:GeneralFolderPermissions" />
+              <s:element minOccurs="0" maxOccurs="1" name="AutoTagging" type="tns:AutoTagging" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsAutoTagged" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultSchema" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsSchemaInherited" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="FullPath" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Color" type="tns:FolderColor" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfMemberInRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberInRole" nillable="true" type="tns:MemberInRole" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberInRole">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OverrideRole" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtraRoles" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GeneralFolderPermissions">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ShowEditDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowCheckInOutDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowDownloadDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowEmailDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowDeleteDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowLinkDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowCopyMoveDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowSubscribeTo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanAddOrModifyDocuments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowVersionHistory" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowMetadataHistory" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowUsageLog" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowConvertToOffline" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowArchiveDocument" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AutoTagging">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetadataFields" type="tns:ArrayOfAutoTaggingField" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultForFolders" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InheritFromCabinet" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAutoTaggingField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AutoTaggingField" nillable="true" type="tns:AutoTaggingField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AutoTaggingField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="FolderColor">
+        <s:restriction base="s:string">
+          <s:enumeration value="yellow" />
+          <s:enumeration value="red" />
+          <s:enumeration value="green" />
+          <s:enumeration value="blue" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Category">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LibraryStructureObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Folders" type="tns:ArrayOfFolder" />
+              <s:element minOccurs="1" maxOccurs="1" name="ParentDrawerId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanAddFolder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowAddFolder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanMove" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowMove" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanSwitchFolderGroup" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfFolder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Folder" nillable="true" type="tns:Folder" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Drawer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LibraryStructureObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfCategory" />
+              <s:element minOccurs="0" maxOccurs="1" name="Folders" type="tns:ArrayOfFolder" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanAddFolder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowAddFolder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CanMove" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowMove" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDrawer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Drawer" nillable="true" type="tns:Drawer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetArchiveTreeStructure">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetArchiveTreeStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArchiveTreeStructureResult" type="tns:ArrayOfCabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTreeStructureWithAllCategories">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTreeStructureWithAllCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTreeStructureWithAllCategoriesResult" type="tns:ArrayOfCabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArchiveTreeStructureWithAllCategories">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetArchiveTreeStructureWithAllCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArchiveTreeStructureWithAllCategoriesResult" type="tns:ArrayOfCabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCabinetStructure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCabinetStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCabinetStructureResult" type="tns:Cabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDrawerStructure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDrawerStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDrawerStructureResult" type="tns:Drawer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryStructure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoryStructureResult" type="tns:Category" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderStructure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFolderStructureResult" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPagedCategoriesForCabinetCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maximumRows" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRowIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SortExpression" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPagedCategoriesForCabinetCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPagedCategoriesForCabinetCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPagedCategoriesForCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maximumRows" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRowIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SortExpression" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPagedCategoriesForCabinetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPagedCategoriesForCabinetResult" type="tns:ArrayOfCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoriesForCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoriesForCabinetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoriesForCabinetResult" type="tns:ArrayOfCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserLibraryObjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userGuidIds" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGuid">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="guid" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LibraryObjectInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectType" type="tns:LibraryObjectType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InternalId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="LibraryObjectType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Folder" />
+          <s:enumeration value="Category" />
+          <s:enumeration value="Drawer" />
+          <s:enumeration value="Cabinet" />
+          <s:enumeration value="All" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfLibraryObjectInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LibraryObjectInfo" nillable="true" type="tns:LibraryObjectInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserLibraryObjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserLibraryObjectsResult" type="tns:ArrayOfLibraryObjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeLibraryObjectsOwner">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="newOwner" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="libObjects" type="tns:ArrayOfLibraryObjectInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeLibraryObjectsOwnerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLibraryObjectsOwners">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:SearchUsersCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchUsersCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Mode" type="tns:SearchMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeDeleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OnlyAvailable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckPermissons" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SearchPhrase" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SearchMode">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="DocumentsOwners" />
+              <s:enumeration value="CabinetsOwners" />
+              <s:enumeration value="FoldersOwners" />
+              <s:enumeration value="UsersCheckedOut" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="ArrayOfADAMObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ADAMObject" nillable="true" type="s2:ADAMObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLibraryObjectsOwnersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLibraryObjectsOwnersResult" type="tns:ArrayOfADAMObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLibraryObjectsOwnersEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="criteria" type="tns:SearchUsersCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ADAMOwner">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ADAMObject" type="s2:ADAMObject" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDisabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvalidCabinetOwner" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvalidFolderOwner" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfADAMOwner">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ADAMOwner" nillable="true" type="tns:ADAMOwner" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLibraryObjectsOwnersExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLibraryObjectsOwnersExResult" type="tns:ArrayOfADAMOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isArchive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="newCabinet" type="tns:Cabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCabinetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddCabinetResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newDrawer" type="tns:Drawer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDrawerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDrawerResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="categoryName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindOrAddCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="categoryName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindOrAddCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FindOrAddCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newFolder" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddFolderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceContentRemoval" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveCabinetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceContentRemoval" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceContentRemoval" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveDrawerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceContentRemoval" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetFoldersMembership">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="inheritSecurityPermissons" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetFoldersMembershipResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="changedFolder" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="changedCategory" type="tns:Category" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="changedDrawer" type="tns:Drawer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDrawerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="changedCabinet" type="tns:Cabinet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCabinetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MoveDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCabinetId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveDrawerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MoveCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destDrawerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MoveFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destDrawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCategoryId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SwitchFolderGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceCategoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCategoryId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SwitchFolderGroupsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CloneCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloneCabinetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CloneDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloneDrawerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CloneCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destDrawerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloneCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CloneFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destDrawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCategoryId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloneFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CopyCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyCabinetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CopyDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyDrawerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CopyCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destDrawerId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CopyFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destDrawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destCategoryId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="destName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBasicUserRolesInScope">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="parentCabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="guids" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBasicUserRolesInScopeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBasicUserRolesInScopeResult" type="tns:ArrayOfMemberInRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableRolesForUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="parentCabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="guids" type="tns:ArrayOfGuid" />
+            <s:element minOccurs="1" maxOccurs="1" name="canBeRestricted" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAzRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AzRole" nillable="true" type="s3:AzRole" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAvailableRolesForUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableRolesForUsersResult" type="tns:ArrayOfAzRole" />
+            <s:element minOccurs="1" maxOccurs="1" name="canBeRestricted" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableRolesForUsersInCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetOwner" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="guids" type="tns:ArrayOfGuid" />
+            <s:element minOccurs="1" maxOccurs="1" name="canBeRestricted" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableRolesForUsersInCabinetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableRolesForUsersInCabinetResult" type="tns:ArrayOfAzRole" />
+            <s:element minOccurs="1" maxOccurs="1" name="canBeRestricted" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculateEligibleMemberObjectsInCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="eligibleGroupIds" type="tns:ArrayOfGuid" />
+            <s:element minOccurs="0" maxOccurs="1" name="eligibleUserIds" type="tns:ArrayOfGuid" />
+            <s:element minOccurs="0" maxOccurs="1" name="usersBelongingDirectly" type="tns:ArrayOfADAMObject" />
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetOwner" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculateEligibleMemberObjectsInCabinetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="eligibleGroupIds" type="tns:ArrayOfGuid" />
+            <s:element minOccurs="0" maxOccurs="1" name="eligibleUserIds" type="tns:ArrayOfGuid" />
+            <s:element minOccurs="0" maxOccurs="1" name="usersBelongingDirectly" type="tns:ArrayOfADAMObject" />
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetOwner" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableFolderOwners">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="canAddFolderGroup" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableFolderOwnersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableFolderOwnersResult" type="tns:ArrayOfADAMObject" />
+            <s:element minOccurs="1" maxOccurs="1" name="canAddFolderGroup" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalculateEffectiveMembers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="members" type="tns:ArrayOfMemberInRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEffectiveMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EffectiveMember" nillable="true" type="s3:EffectiveMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CalculateEffectiveMembersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CalculateEffectiveMembersResult" type="tns:ArrayOfEffectiveMember" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveExpandedNodes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nodes" type="tns:ArrayOfNodeInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNodeInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NodeInfo" nillable="true" type="tns:NodeInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NodeInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NodeType" type="tns:NodeInfoType" />
+          <s:element minOccurs="1" maxOccurs="1" name="NodeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NodeSubId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="NodeInfoType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Root" />
+          <s:enumeration value="Cabinet" />
+          <s:enumeration value="Drawer" />
+          <s:enumeration value="Category" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SaveExpandedNodesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetExpandedRoots">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetExpandedRootsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExpandedRootsResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LibraryObjectStatistics">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CabinetsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DrawersCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FolderGroupsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FoldersCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FilesLatestVersionCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SizeLatestVersion" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FilesAllVersionsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SizeAllVersions" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFolderStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFolderStatisticsResult" type="tns:LibraryObjectStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderGroupStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderGroupId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderGroupStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFolderGroupStatisticsResult" type="tns:LibraryObjectStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDrawerStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDrawerStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDrawerStatisticsResult" type="tns:LibraryObjectStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCabinetStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCabinetStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCabinetStatisticsResult" type="tns:LibraryObjectStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWholeLibraryStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isArchive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWholeLibraryStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWholeLibraryStatisticsResult" type="tns:LibraryObjectStatistics" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveCabinet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveCabinetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ArchiveDrawer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveDrawerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ArchiveCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ArchiveFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDrawerWeight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="drawerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="weight" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDrawerWeightResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetCategoryWeight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="categoryId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="weight" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCategoryWeightResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetCabinetWeight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cabinetId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="weight" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCabinetWeightResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetFolderWeight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="weight" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFolderWeightResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFolderPathAndLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFolderPathAndLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="path" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="location" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/userrolemanager/usergroupmanager/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:complexType name="ADAMObject">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerLicenseType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BelongsDirectly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="DomainName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BelongsToFHGroups" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifiedDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasFHAccountEnabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkPhone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s2:ADAMObjectType" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasGuaranteedAccess" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADFolder" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsUserEnabledInAD" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScanningInboxLicense" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebViewerLicense" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ADAMObjectType">
+        <s:restriction base="s:string">
+          <s:enumeration value="LocalUser" />
+          <s:enumeration value="DomainUser" />
+          <s:enumeration value="DomainGroup" />
+          <s:enumeration value="FileholdGroup" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/userrolemanager/internalservice/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:complexType name="AzRole">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operations" type="s3:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentRoles" type="s3:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EffectiveMember">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtraRoles" type="s3:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Groups" type="s3:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTreeStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTreeStructure" />
+  </wsdl:message>
+  <wsdl:message name="GetTreeStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTreeStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArchiveTreeStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArchiveTreeStructure" />
+  </wsdl:message>
+  <wsdl:message name="GetArchiveTreeStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArchiveTreeStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTreeStructureWithAllCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTreeStructureWithAllCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetTreeStructureWithAllCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTreeStructureWithAllCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArchiveTreeStructureWithAllCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArchiveTreeStructureWithAllCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetArchiveTreeStructureWithAllCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArchiveTreeStructureWithAllCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCabinetStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCabinetStructure" />
+  </wsdl:message>
+  <wsdl:message name="GetCabinetStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCabinetStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDrawerStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDrawerStructure" />
+  </wsdl:message>
+  <wsdl:message name="GetDrawerStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDrawerStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoryStructure" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoryStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFolderStructure" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFolderStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPagedCategoriesForCabinetCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPagedCategoriesForCabinetCount" />
+  </wsdl:message>
+  <wsdl:message name="GetPagedCategoriesForCabinetCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPagedCategoriesForCabinetCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPagedCategoriesForCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPagedCategoriesForCabinet" />
+  </wsdl:message>
+  <wsdl:message name="GetPagedCategoriesForCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPagedCategoriesForCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesForCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoriesForCabinet" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesForCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoriesForCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserLibraryObjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserLibraryObjects" />
+  </wsdl:message>
+  <wsdl:message name="GetUserLibraryObjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserLibraryObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeLibraryObjectsOwnerSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeLibraryObjectsOwner" />
+  </wsdl:message>
+  <wsdl:message name="ChangeLibraryObjectsOwnerSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeLibraryObjectsOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLibraryObjectsOwnersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLibraryObjectsOwners" />
+  </wsdl:message>
+  <wsdl:message name="GetLibraryObjectsOwnersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLibraryObjectsOwnersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLibraryObjectsOwnersExSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLibraryObjectsOwnersEx" />
+  </wsdl:message>
+  <wsdl:message name="GetLibraryObjectsOwnersExSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLibraryObjectsOwnersExResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:AddCabinet" />
+  </wsdl:message>
+  <wsdl:message name="AddCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:AddCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDrawer" />
+  </wsdl:message>
+  <wsdl:message name="AddDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:AddCategory" />
+  </wsdl:message>
+  <wsdl:message name="AddCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:AddCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindOrAddCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:FindOrAddCategory" />
+  </wsdl:message>
+  <wsdl:message name="FindOrAddCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:FindOrAddCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFolder" />
+  </wsdl:message>
+  <wsdl:message name="AddFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveCabinet" />
+  </wsdl:message>
+  <wsdl:message name="RemoveCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveCategory" />
+  </wsdl:message>
+  <wsdl:message name="RemoveCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveDrawer" />
+  </wsdl:message>
+  <wsdl:message name="RemoveDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveFolder" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetFoldersMembershipSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetFoldersMembership" />
+  </wsdl:message>
+  <wsdl:message name="ResetFoldersMembershipSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetFoldersMembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFolder" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCategory" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDrawer" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCabinet" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveDrawer" />
+  </wsdl:message>
+  <wsdl:message name="MoveDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:MoveCategory" />
+  </wsdl:message>
+  <wsdl:message name="MoveCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:MoveCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveFolder" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="SwitchFolderGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:SwitchFolderGroups" />
+  </wsdl:message>
+  <wsdl:message name="SwitchFolderGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:SwitchFolderGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloneCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:CloneCabinet" />
+  </wsdl:message>
+  <wsdl:message name="CloneCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:CloneCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloneDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:CloneDrawer" />
+  </wsdl:message>
+  <wsdl:message name="CloneDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:CloneDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloneCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:CloneCategory" />
+  </wsdl:message>
+  <wsdl:message name="CloneCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:CloneCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloneFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:CloneFolder" />
+  </wsdl:message>
+  <wsdl:message name="CloneFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:CloneFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyCabinet" />
+  </wsdl:message>
+  <wsdl:message name="CopyCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyDrawer" />
+  </wsdl:message>
+  <wsdl:message name="CopyDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:CopyCategory" />
+  </wsdl:message>
+  <wsdl:message name="CopyCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:CopyCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyFolder" />
+  </wsdl:message>
+  <wsdl:message name="CopyFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBasicUserRolesInScopeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBasicUserRolesInScope" />
+  </wsdl:message>
+  <wsdl:message name="GetBasicUserRolesInScopeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBasicUserRolesInScopeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableRolesForUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableRolesForUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableRolesForUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableRolesForUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableRolesForUsersInCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableRolesForUsersInCabinet" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableRolesForUsersInCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableRolesForUsersInCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculateEligibleMemberObjectsInCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:CalculateEligibleMemberObjectsInCabinet" />
+  </wsdl:message>
+  <wsdl:message name="CalculateEligibleMemberObjectsInCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:CalculateEligibleMemberObjectsInCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableFolderOwnersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableFolderOwners" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableFolderOwnersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableFolderOwnersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculateEffectiveMembersSoapIn">
+    <wsdl:part name="parameters" element="tns:CalculateEffectiveMembers" />
+  </wsdl:message>
+  <wsdl:message name="CalculateEffectiveMembersSoapOut">
+    <wsdl:part name="parameters" element="tns:CalculateEffectiveMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveExpandedNodesSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveExpandedNodes" />
+  </wsdl:message>
+  <wsdl:message name="SaveExpandedNodesSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveExpandedNodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExpandedRootsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExpandedRoots" />
+  </wsdl:message>
+  <wsdl:message name="GetExpandedRootsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExpandedRootsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFolderStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFolderStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderGroupStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFolderGroupStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderGroupStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFolderGroupStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDrawerStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDrawerStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetDrawerStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDrawerStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCabinetStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCabinetStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetCabinetStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCabinetStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWholeLibraryStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWholeLibraryStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetWholeLibraryStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWholeLibraryStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveCabinetSoapIn">
+    <wsdl:part name="parameters" element="tns:ArchiveCabinet" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveCabinetSoapOut">
+    <wsdl:part name="parameters" element="tns:ArchiveCabinetResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveDrawerSoapIn">
+    <wsdl:part name="parameters" element="tns:ArchiveDrawer" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveDrawerSoapOut">
+    <wsdl:part name="parameters" element="tns:ArchiveDrawerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:ArchiveCategory" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:ArchiveCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:ArchiveFolder" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:ArchiveFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDrawerWeightSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDrawerWeight" />
+  </wsdl:message>
+  <wsdl:message name="SetDrawerWeightSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDrawerWeightResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCategoryWeightSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCategoryWeight" />
+  </wsdl:message>
+  <wsdl:message name="SetCategoryWeightSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCategoryWeightResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCabinetWeightSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCabinetWeight" />
+  </wsdl:message>
+  <wsdl:message name="SetCabinetWeightSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCabinetWeightResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFolderWeightSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFolderWeight" />
+  </wsdl:message>
+  <wsdl:message name="SetFolderWeightSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFolderWeightResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderPathAndLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFolderPathAndLocation" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderPathAndLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFolderPathAndLocationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LibraryStructureManagerSoap">
+    <wsdl:operation name="GetTreeStructure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return top level cabinet nodes definition.</wsdl:documentation>
+      <wsdl:input message="tns:GetTreeStructureSoapIn" />
+      <wsdl:output message="tns:GetTreeStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArchiveTreeStructure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return archive cabinet nodes definition.</wsdl:documentation>
+      <wsdl:input message="tns:GetArchiveTreeStructureSoapIn" />
+      <wsdl:output message="tns:GetArchiveTreeStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTreeStructureWithAllCategories">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return cabinets, drawers and all available categories for each drawer.</wsdl:documentation>
+      <wsdl:input message="tns:GetTreeStructureWithAllCategoriesSoapIn" />
+      <wsdl:output message="tns:GetTreeStructureWithAllCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArchiveTreeStructureWithAllCategories">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return archive cabinets, drawers and all available categories for each drawer.</wsdl:documentation>
+      <wsdl:input message="tns:GetArchiveTreeStructureWithAllCategoriesSoapIn" />
+      <wsdl:output message="tns:GetArchiveTreeStructureWithAllCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCabinetStructure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return cabinet with given ID with all drawers.</wsdl:documentation>
+      <wsdl:input message="tns:GetCabinetStructureSoapIn" />
+      <wsdl:output message="tns:GetCabinetStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDrawerStructure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return drawer with given ID with all categories and folders.</wsdl:documentation>
+      <wsdl:input message="tns:GetDrawerStructureSoapIn" />
+      <wsdl:output message="tns:GetDrawerStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryStructure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return category with given ID with all folders.</wsdl:documentation>
+      <wsdl:input message="tns:GetCategoryStructureSoapIn" />
+      <wsdl:output message="tns:GetCategoryStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderStructure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all properties of a folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetFolderStructureSoapIn" />
+      <wsdl:output message="tns:GetFolderStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPagedCategoriesForCabinetCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the number of folder groups in a cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:GetPagedCategoriesForCabinetCountSoapIn" />
+      <wsdl:output message="tns:GetPagedCategoriesForCabinetCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPagedCategoriesForCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all folder groups in a cabinet with paging.</wsdl:documentation>
+      <wsdl:input message="tns:GetPagedCategoriesForCabinetSoapIn" />
+      <wsdl:output message="tns:GetPagedCategoriesForCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesForCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all folder groups for a cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:GetCategoriesForCabinetSoapIn" />
+      <wsdl:output message="tns:GetCategoriesForCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLibraryObjects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return a specified user list of library objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserLibraryObjectsSoapIn" />
+      <wsdl:output message="tns:GetUserLibraryObjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeLibraryObjectsOwner">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Change cabinet or folder ownership.</wsdl:documentation>
+      <wsdl:input message="tns:ChangeLibraryObjectsOwnerSoapIn" />
+      <wsdl:output message="tns:ChangeLibraryObjectsOwnerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryObjectsOwners">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Find all users who match given criteria.</wsdl:documentation>
+      <wsdl:input message="tns:GetLibraryObjectsOwnersSoapIn" />
+      <wsdl:output message="tns:GetLibraryObjectsOwnersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryObjectsOwnersEx">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Find all users who match given criteria with extended info.</wsdl:documentation>
+      <wsdl:input message="tns:GetLibraryObjectsOwnersExSoapIn" />
+      <wsdl:output message="tns:GetLibraryObjectsOwnersExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new cabinet in library tree.</wsdl:documentation>
+      <wsdl:input message="tns:AddCabinetSoapIn" />
+      <wsdl:output message="tns:AddCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new drawer in library tree.</wsdl:documentation>
+      <wsdl:input message="tns:AddDrawerSoapIn" />
+      <wsdl:output message="tns:AddDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new folder group in library tree.</wsdl:documentation>
+      <wsdl:input message="tns:AddCategorySoapIn" />
+      <wsdl:output message="tns:AddCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindOrAddCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new folder group in library tree or return existing folder group.</wsdl:documentation>
+      <wsdl:input message="tns:FindOrAddCategorySoapIn" />
+      <wsdl:output message="tns:FindOrAddCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create new folder in library tree.</wsdl:documentation>
+      <wsdl:input message="tns:AddFolderSoapIn" />
+      <wsdl:output message="tns:AddFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveCabinetSoapIn" />
+      <wsdl:output message="tns:RemoveCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a folder group.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveCategorySoapIn" />
+      <wsdl:output message="tns:RemoveCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a drawer.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveDrawerSoapIn" />
+      <wsdl:output message="tns:RemoveDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a folder.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveFolderSoapIn" />
+      <wsdl:output message="tns:RemoveFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetFoldersMembership">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset membership of all folders in given cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:ResetFoldersMembershipSoapIn" />
+      <wsdl:output message="tns:ResetFoldersMembershipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a folder.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateFolderSoapIn" />
+      <wsdl:output message="tns:UpdateFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a folder group.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateCategorySoapIn" />
+      <wsdl:output message="tns:UpdateCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a drawer.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateDrawerSoapIn" />
+      <wsdl:output message="tns:UpdateDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify a cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateCabinetSoapIn" />
+      <wsdl:output message="tns:UpdateCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move a drawer to another cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:MoveDrawerSoapIn" />
+      <wsdl:output message="tns:MoveDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move a folder group to another drawer.</wsdl:documentation>
+      <wsdl:input message="tns:MoveCategorySoapIn" />
+      <wsdl:output message="tns:MoveCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move a folder to another drawer or folder group.</wsdl:documentation>
+      <wsdl:input message="tns:MoveFolderSoapIn" />
+      <wsdl:output message="tns:MoveFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SwitchFolderGroups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move all folders from one folder group to another.</wsdl:documentation>
+      <wsdl:input message="tns:SwitchFolderGroupsSoapIn" />
+      <wsdl:output message="tns:SwitchFolderGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloneCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Clone a cabinet structure.</wsdl:documentation>
+      <wsdl:input message="tns:CloneCabinetSoapIn" />
+      <wsdl:output message="tns:CloneCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloneDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Clone a drawer structure to another cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:CloneDrawerSoapIn" />
+      <wsdl:output message="tns:CloneDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloneCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Clone a folder group to another drawer.</wsdl:documentation>
+      <wsdl:input message="tns:CloneCategorySoapIn" />
+      <wsdl:output message="tns:CloneCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloneFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Clone a folder to another drawer or folder group.</wsdl:documentation>
+      <wsdl:input message="tns:CloneFolderSoapIn" />
+      <wsdl:output message="tns:CloneFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Copy cabinet with all documents.</wsdl:documentation>
+      <wsdl:input message="tns:CopyCabinetSoapIn" />
+      <wsdl:output message="tns:CopyCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Copy a drawer with all documents to another cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:CopyDrawerSoapIn" />
+      <wsdl:output message="tns:CopyDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Copy a folder group with all documents to another drawer.</wsdl:documentation>
+      <wsdl:input message="tns:CopyCategorySoapIn" />
+      <wsdl:output message="tns:CopyCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Copy a folder with all documents to another drawer or folder group.</wsdl:documentation>
+      <wsdl:input message="tns:CopyFolderSoapIn" />
+      <wsdl:output message="tns:CopyFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBasicUserRolesInScope">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate roles for specified users based on specified scope.</wsdl:documentation>
+      <wsdl:input message="tns:GetBasicUserRolesInScopeSoapIn" />
+      <wsdl:output message="tns:GetBasicUserRolesInScopeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableRolesForUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate roles for specified users in a folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetAvailableRolesForUsersSoapIn" />
+      <wsdl:output message="tns:GetAvailableRolesForUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableRolesForUsersInCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate roles for specified users in a cabinet</wsdl:documentation>
+      <wsdl:input message="tns:GetAvailableRolesForUsersInCabinetSoapIn" />
+      <wsdl:output message="tns:GetAvailableRolesForUsersInCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateEligibleMemberObjectsInCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate users allowed to be a member of a folder within specified cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:CalculateEligibleMemberObjectsInCabinetSoapIn" />
+      <wsdl:output message="tns:CalculateEligibleMemberObjectsInCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFolderOwners">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculates users allowed to be an owner of a folder within specified cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:GetAvailableFolderOwnersSoapIn" />
+      <wsdl:output message="tns:GetAvailableFolderOwnersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateEffectiveMembers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate effective object members in given cabinet</wsdl:documentation>
+      <wsdl:input message="tns:CalculateEffectiveMembersSoapIn" />
+      <wsdl:output message="tns:CalculateEffectiveMembersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveExpandedNodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Save the state of expanded nodes.</wsdl:documentation>
+      <wsdl:input message="tns:SaveExpandedNodesSoapIn" />
+      <wsdl:output message="tns:SaveExpandedNodesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpandedRoots">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return identifiers of expanded root nodes.</wsdl:documentation>
+      <wsdl:input message="tns:GetExpandedRootsSoapIn" />
+      <wsdl:output message="tns:GetExpandedRootsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate statistics for a folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetFolderStatisticsSoapIn" />
+      <wsdl:output message="tns:GetFolderStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderGroupStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate statistics for a folder group.</wsdl:documentation>
+      <wsdl:input message="tns:GetFolderGroupStatisticsSoapIn" />
+      <wsdl:output message="tns:GetFolderGroupStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDrawerStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate statistics for a drawer.</wsdl:documentation>
+      <wsdl:input message="tns:GetDrawerStatisticsSoapIn" />
+      <wsdl:output message="tns:GetDrawerStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCabinetStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate statistics for a cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:GetCabinetStatisticsSoapIn" />
+      <wsdl:output message="tns:GetCabinetStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWholeLibraryStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate statistics for whole library.</wsdl:documentation>
+      <wsdl:input message="tns:GetWholeLibraryStatisticsSoapIn" />
+      <wsdl:output message="tns:GetWholeLibraryStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveCabinet">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move the cabinet to the library archive.</wsdl:documentation>
+      <wsdl:input message="tns:ArchiveCabinetSoapIn" />
+      <wsdl:output message="tns:ArchiveCabinetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveDrawer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move the drawer to the library archive.</wsdl:documentation>
+      <wsdl:input message="tns:ArchiveDrawerSoapIn" />
+      <wsdl:output message="tns:ArchiveDrawerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move the folder group to the library archive.</wsdl:documentation>
+      <wsdl:input message="tns:ArchiveCategorySoapIn" />
+      <wsdl:output message="tns:ArchiveCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move the folder to the library archive.</wsdl:documentation>
+      <wsdl:input message="tns:ArchiveFolderSoapIn" />
+      <wsdl:output message="tns:ArchiveFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDrawerWeight">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify the weight of a drawer.</wsdl:documentation>
+      <wsdl:input message="tns:SetDrawerWeightSoapIn" />
+      <wsdl:output message="tns:SetDrawerWeightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCategoryWeight">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify the weight of a folder group.</wsdl:documentation>
+      <wsdl:input message="tns:SetCategoryWeightSoapIn" />
+      <wsdl:output message="tns:SetCategoryWeightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCabinetWeight">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify the weight of a cabinet.</wsdl:documentation>
+      <wsdl:input message="tns:SetCabinetWeightSoapIn" />
+      <wsdl:output message="tns:SetCabinetWeightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFolderWeight">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify the weight of a folder.</wsdl:documentation>
+      <wsdl:input message="tns:SetFolderWeightSoapIn" />
+      <wsdl:output message="tns:SetFolderWeightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderPathAndLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the path and location of given folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetFolderPathAndLocationSoapIn" />
+      <wsdl:output message="tns:GetFolderPathAndLocationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LibraryStructureManagerSoap" type="tns:LibraryStructureManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTreeStructure">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetTreeStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArchiveTreeStructure">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetArchiveTreeStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTreeStructureWithAllCategories">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetTreeStructureWithAllCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArchiveTreeStructureWithAllCategories">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetArchiveTreeStructureWithAllCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCabinetStructure">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCabinetStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDrawerStructure">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetDrawerStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryStructure">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCategoryStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderStructure">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagedCategoriesForCabinetCount">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetPagedCategoriesForCabinetCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagedCategoriesForCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetPagedCategoriesForCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesForCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCategoriesForCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLibraryObjects">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetUserLibraryObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeLibraryObjectsOwner">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ChangeLibraryObjectsOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryObjectsOwners">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetLibraryObjectsOwners" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryObjectsOwnersEx">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetLibraryObjectsOwnersEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindOrAddCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/FindOrAddCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetFoldersMembership">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ResetFoldersMembership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/MoveDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/MoveCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/MoveFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SwitchFolderGroups">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SwitchFolderGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBasicUserRolesInScope">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetBasicUserRolesInScope" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableRolesForUsers">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetAvailableRolesForUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableRolesForUsersInCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetAvailableRolesForUsersInCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateEligibleMemberObjectsInCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CalculateEligibleMemberObjectsInCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFolderOwners">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetAvailableFolderOwners" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateEffectiveMembers">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CalculateEffectiveMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveExpandedNodes">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SaveExpandedNodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpandedRoots">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetExpandedRoots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderStatistics">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderGroupStatistics">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderGroupStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDrawerStatistics">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetDrawerStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCabinetStatistics">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCabinetStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWholeLibraryStatistics">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetWholeLibraryStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveCabinet">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveCabinet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveDrawer">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveDrawer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveCategory">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveFolder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDrawerWeight">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetDrawerWeight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCategoryWeight">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetCategoryWeight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCabinetWeight">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetCabinetWeight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFolderWeight">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetFolderWeight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderPathAndLocation">
+      <soap:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderPathAndLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LibraryStructureManagerSoap12" type="tns:LibraryStructureManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTreeStructure">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetTreeStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArchiveTreeStructure">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetArchiveTreeStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTreeStructureWithAllCategories">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetTreeStructureWithAllCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArchiveTreeStructureWithAllCategories">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetArchiveTreeStructureWithAllCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCabinetStructure">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCabinetStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDrawerStructure">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetDrawerStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryStructure">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCategoryStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderStructure">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagedCategoriesForCabinetCount">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetPagedCategoriesForCabinetCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPagedCategoriesForCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetPagedCategoriesForCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesForCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCategoriesForCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLibraryObjects">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetUserLibraryObjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeLibraryObjectsOwner">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ChangeLibraryObjectsOwner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryObjectsOwners">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetLibraryObjectsOwners" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryObjectsOwnersEx">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetLibraryObjectsOwnersEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindOrAddCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/FindOrAddCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/AddFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/RemoveFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetFoldersMembership">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ResetFoldersMembership" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/UpdateCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/MoveDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/MoveCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/MoveFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SwitchFolderGroups">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SwitchFolderGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloneFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CloneFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CopyFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBasicUserRolesInScope">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetBasicUserRolesInScope" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableRolesForUsers">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetAvailableRolesForUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableRolesForUsersInCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetAvailableRolesForUsersInCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateEligibleMemberObjectsInCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CalculateEligibleMemberObjectsInCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFolderOwners">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetAvailableFolderOwners" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateEffectiveMembers">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/CalculateEffectiveMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveExpandedNodes">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SaveExpandedNodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpandedRoots">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetExpandedRoots" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderStatistics">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderGroupStatistics">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderGroupStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDrawerStatistics">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetDrawerStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCabinetStatistics">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetCabinetStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWholeLibraryStatistics">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetWholeLibraryStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveCabinet">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveCabinet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveDrawer">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveDrawer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveCategory">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArchiveFolder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/ArchiveFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDrawerWeight">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetDrawerWeight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCategoryWeight">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetCategoryWeight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCabinetWeight">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetCabinetWeight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFolderWeight">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/SetFolderWeight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderPathAndLocation">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/librarystructuremanager/GetFolderPathAndLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LibraryStructureManager">
+    <wsdl:port name="LibraryStructureManagerSoap" binding="tns:LibraryStructureManagerSoap">
+      <soap:address location="http://filehold/FH/FileHold/LibraryManager/LibraryStructureManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LibraryStructureManagerSoap12" binding="tns:LibraryStructureManagerSoap12">
+      <soap12:address location="http://filehold/FH/FileHold/LibraryManager/LibraryStructureManager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

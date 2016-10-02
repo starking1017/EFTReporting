@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx?wsdl" docRef="http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx" xmlns:q1="http://filehold.com/documentrepository/repositorycontroller/" binding="q1:RepositoryControllerSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx" xmlns:q2="http://filehold.com/documentrepository/repositorycontroller/" binding="q2:RepositoryControllerSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

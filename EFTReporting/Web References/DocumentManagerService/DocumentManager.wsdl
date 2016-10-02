@@ -1,0 +1,3863 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://filehold.com/librarymanager/documentmanager/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s2="http://filehold.com/fulltextsearch/fulltextsearch/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://filehold.com/librarymanager/documentmanager/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/librarymanager/documentmanager/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:import namespace="http://filehold.com/fulltextsearch/fulltextsearch/" />
+      <s:element name="GetDocumentsToDownload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeShortcuts" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkingOut" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsToDownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentsToDownloadResult" type="tns:ArrayOfDownloadDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDownloadDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DownloadDocument" nillable="true" type="tns:DownloadDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DownloadDocument">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MetadataVersionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaType" type="tns:DocumentSchemaType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DocumentSchemaType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ElectronicDocument" />
+          <s:enumeration value="ElectronicRecord" />
+          <s:enumeration value="OfflineDocument" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSingleDocumentToDownload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleDocumentToDownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSingleDocumentToDownloadResult" type="tns:DownloadDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsToCheckIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsToCheckInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentsToCheckInResult" type="tns:ArrayOfDownloadDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrepareSingleDocumentToDownload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="actionType" type="tns:ActionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ActionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="CheckedOut" />
+          <s:enumeration value="Downloaded" />
+          <s:enumeration value="EditMetadata" />
+          <s:enumeration value="CheckedIn" />
+          <s:enumeration value="CheckedInNoChanges" />
+          <s:enumeration value="AddDocument" />
+          <s:enumeration value="ScheduledForDeletion" />
+          <s:enumeration value="Linked" />
+          <s:enumeration value="Moved" />
+          <s:enumeration value="Copied" />
+          <s:enumeration value="Email" />
+          <s:enumeration value="DocumentRecovered" />
+          <s:enumeration value="PermanentlyDeleted" />
+          <s:enumeration value="TransferedFrom" />
+          <s:enumeration value="TransferedTo" />
+          <s:enumeration value="Archived" />
+          <s:enumeration value="CreatedByCopy" />
+          <s:enumeration value="WorkflowInitiated" />
+          <s:enumeration value="WorkflowCancelled" />
+          <s:enumeration value="Viewed" />
+          <s:enumeration value="Printed" />
+          <s:enumeration value="Published" />
+          <s:enumeration value="OwnerChanged" />
+          <s:enumeration value="ConvertToDocument" />
+          <s:enumeration value="ConvertToRecord" />
+          <s:enumeration value="ConvertToOffline" />
+          <s:enumeration value="Unlinked" />
+          <s:enumeration value="RemovedFromWorkflow" />
+          <s:enumeration value="AddedSupporting" />
+          <s:enumeration value="RemovedSupporting" />
+          <s:enumeration value="Notification" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PrepareSingleDocumentToDownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrepareSingleDocumentToDownloadByDocumentVersionId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="actionType" type="tns:ActionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrepareSingleDocumentToDownloadByDocumentVersionIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUsageLogEntryForDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="actionType" type="tns:ActionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUsageLogEntryForDocumentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckOutDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeShortcuts" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckOutDocumentsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Move">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="destinationFolderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MoveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveAndEdit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="destinationFolderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSchemaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFieldWithValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldWithValue" nillable="true" type="tns:FieldWithValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldWithValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MoveAndEditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MoveAndEditResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Copy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="destinationFolderId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CopyAndEdit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="destinationFolderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSchemaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyAndEditResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddLinks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDocumentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddLinksResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveLinks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDocumentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveLinksResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Recover">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecoverResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetMultiMetadata">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSchemaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMultiMetadataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDocumentsToSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EmailDocumentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MetadataVersionId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentIcon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEmailDocumentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailDocumentInfo" nillable="true" type="tns:EmailDocumentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDocumentsToSendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentsToSendResult" type="tns:ArrayOfEmailDocumentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileExtensions">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="FileExtension">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFileExtension">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FileExtension" nillable="true" type="tns:FileExtension" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFileExtensionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileExtensionsResult" type="tns:ArrayOfFileExtension" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRemoveFavourites">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="removeDocumentFromFavourites" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRemoveFavouritesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDocumentId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentVersion" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentVersionIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailWithDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bcc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="metadataVersionIds" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="markupIds" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="links" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="languageName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailWithDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendEmailWithDocumentsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentUrlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLink">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="forFDA" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLinkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentLinkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFTSServiceStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFTSServiceStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFTSServiceStatusResult" type="s2:FTSServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentOwnerGuid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentOwnerGuidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentOwnerGuidResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLibraryAuditLogs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateFrom" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateTo" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuditLogEntry">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EntryId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActionDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAuditLogEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AuditLogEntry" nillable="true" type="tns:AuditLogEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLibraryAuditLogsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLibraryAuditLogsResult" type="tns:ArrayOfAuditLogEntry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InvokeUserAction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InvokeUserActionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InvokeUserActionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSchemaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+            <s:element minOccurs="1" maxOccurs="1" name="uploadToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="originalFileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="snapshotId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendEmailToMembers" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDocumentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDocumentWithAutoFiling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="scriptToUse" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSchemaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+            <s:element minOccurs="1" maxOccurs="1" name="uploadToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="originalFileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="snapshotId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendEmailToMembers" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDocumentWithAutoFilingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDocumentWithAutoFilingResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDocumentInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:DocumentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="UploadToken" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalFileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnapshotId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendEmailToMembers" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VersionNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AutoFilingScriptToUse" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaType" nillable="true" type="tns:DocumentSchemaType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddDocumentInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDocumentInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMetadata">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="prevMetadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSchemaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldsWithValues" type="tns:ArrayOfFieldWithValue" />
+            <s:element minOccurs="1" maxOccurs="1" name="overwritePrevious" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMetadataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsCheckedOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsCheckedOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsCheckedOutResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsCheckedOutBy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsCheckedOutByResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IsCheckedOutByResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckInDocumentsWithNoChanges">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowCheckinByOtherUsers" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckInDocumentsWithNoChangesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uploadToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="tns:CheckInOptions" />
+            <s:element minOccurs="0" maxOccurs="1" name="originalFileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendEmailToMembers" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="CheckInOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="CreateNewVersion" />
+          <s:enumeration value="NoChanges" />
+          <s:enumeration value="OverwriteCurrentVersion" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CheckInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckInResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReinstateAsLatestVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="restoreMetadata" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReinstateAsLatestVersionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeDocumentType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DocumentSchemaType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDocumentTypeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DocumentSchemaType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeTypeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConvertToOffline">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertToOfflineResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConvertToOfflineById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertToOfflineByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ConvertToElectronic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uploadToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="originalFileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendEmailToMembers" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertToElectronicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConvertToElectronicResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDocumentsOwner">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="newOwnerGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDocumentsOwnerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDocumentName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentVersionNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentNameAndSchema">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDocumentNameAndSchemaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentNameAndSchemaResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentLocationResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoTaggingForDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="metadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AutoTagging">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetadataFields" type="tns:ArrayOfAutoTaggingField" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultForFolders" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InheritFromCabinet" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAutoTaggingField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AutoTaggingField" nillable="true" type="tns:AutoTaggingField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AutoTaggingField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAutoTaggingForDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAutoTaggingForDocumentResult" type="tns:AutoTagging" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoTaggingForSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoTaggingForSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAutoTaggingForSelectionResult" type="tns:AutoTagging" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoTaggingForFolders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folderIds" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoTaggingForFoldersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAutoTaggingForFoldersResult" type="tns:AutoTagging" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Archive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArchiveResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddShortcut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddShortcutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckShortcutsExist">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckShortcutsExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckShortcutsExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selection" type="tns:Selection" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Selection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SnapshotSelection" type="tns:ArrayOfSnapshotSelection" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSnapshotSelection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SnapshotSelection" nillable="true" type="tns:SnapshotSelection" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SnapshotSelection">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SnapshotId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContainsExcluded" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentIdList" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetadataVersionIdList" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSelectionResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasDocuments" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasShortcuts" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasCheckedOut" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasNotLastVersions" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasShortcutsToCheckedInDocuments" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasActiveWorkflows" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasLastVisible" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasLockedMarkups" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hasDocuments" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasShortcuts" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasCheckedOut" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasNotLastVersions" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasShortcutsToCheckedInDocuments" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasActiveWorkflows" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasLastVisible" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasLockedMarkups" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionDeleted">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="deleted" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionDeletedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleted" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="inLibrary" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inArchive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="inLibrary" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inArchive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAllCanUnArchive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAllCanUnArchiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAllCanUnArchiveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDocumentsInWorkflow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasActiveWorkflow" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasSupportingWorkflow" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDocumentsInWorkflowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hasActiveWorkflow" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasSupportingWorkflow" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsInSchemas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentInSchema">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SchemaName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentsCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentInSchema">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentInSchema" nillable="true" type="tns:DocumentInSchema" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDocumentsInSchemasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentsInSchemasResult" type="tns:ArrayOfDocumentInSchema" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentsCountInAllSchemas" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsInSchemaType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:DocumentSchemaType" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsInSchemaTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentsInSchemaTypeResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionSchemaType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="firstMetadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionSchemaTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckSelectionSchemaTypeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="firstMetadataVersionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionDocumentType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="allElectronic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRecords" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allOffline" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allCanChangeType" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionDocumentTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="allElectronic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRecords" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allOffline" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allCanChangeType" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAllCanChangeType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="metadataVersionIds" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAllCanChangeTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAllCanChangeTypeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAllCanConvertToElectronic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="metadataVersionIds" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAllCanConvertToElectronicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAllCanConvertToElectronicResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDocumentType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="metadataVersionIds" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="allIncludeElectronic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allIncludeRecords" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allIncludeOffline" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDocumentTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="allIncludeElectronic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allIncludeRecords" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="allIncludeOffline" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsWithCustomNaming">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsWithCustomNamingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentsWithCustomNamingResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionDocumentNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSelectionDocumentNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckSelectionDocumentNumberResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveSelectionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetShortcutsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShortcutsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckedOutDocumentsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckedOutDocumentsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveWorkflowDocumentsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveWorkflowDocumentsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveWorkflowDocumentsForCheckOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveWorkflowDocumentsForCheckOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastVisibleVersionsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastVisibleVersionsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNotLastVersionsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNotLastVersionsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLockedMarkupDocumentsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLockedMarkupDocumentsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="names" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSelectionContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SelectionItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MetadataVersionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectionItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectionItem" nillable="true" type="tns:SelectionItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSelectionContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSelectionContentResult" type="tns:ArrayOfSelectionItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryVersionsFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryVersionsFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBinaryVersionsFromSelectionResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchemaTypesFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentWithType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MetadataVersionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentSchemaType" type="tns:DocumentSchemaType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentWithType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentWithType" nillable="true" type="tns:DocumentWithType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSchemaTypesFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchemaTypesFromSelectionResult" type="tns:ArrayOfDocumentWithType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateWorkingDocumentSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="version" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateWorkingDocumentSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateWorkingDocumentSelectionResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentSchemaFromSelection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="allVersions" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentSchemaFromSelectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentSchemaFromSelectionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="removeAllVersions" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDocumentsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrepareDocumentsToDownload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeShortcuts" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="checkingOut" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrepareDocumentsToDownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/fulltextsearch/fulltextsearch/">
+      <s:complexType name="FTSServiceStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompressedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocCount" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="Flags" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fragmentation" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="IndexSize" type="s:unsignedLong" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObsoleteCount" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentFull" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="StructureVersion" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdatedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="WordCount" type="s:unsignedLong" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskQueueLength" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDocumentsToDownloadSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsToDownload" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsToDownloadSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsToDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleDocumentToDownloadSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSingleDocumentToDownload" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleDocumentToDownloadSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSingleDocumentToDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsToCheckInSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsToCheckIn" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsToCheckInSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsToCheckInResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrepareSingleDocumentToDownloadSoapIn">
+    <wsdl:part name="parameters" element="tns:PrepareSingleDocumentToDownload" />
+  </wsdl:message>
+  <wsdl:message name="PrepareSingleDocumentToDownloadSoapOut">
+    <wsdl:part name="parameters" element="tns:PrepareSingleDocumentToDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrepareSingleDocumentToDownloadByDocumentVersionIdSoapIn">
+    <wsdl:part name="parameters" element="tns:PrepareSingleDocumentToDownloadByDocumentVersionId" />
+  </wsdl:message>
+  <wsdl:message name="PrepareSingleDocumentToDownloadByDocumentVersionIdSoapOut">
+    <wsdl:part name="parameters" element="tns:PrepareSingleDocumentToDownloadByDocumentVersionIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUsageLogEntryForDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUsageLogEntryForDocument" />
+  </wsdl:message>
+  <wsdl:message name="AddUsageLogEntryForDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUsageLogEntryForDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckOutDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckOutDocuments" />
+  </wsdl:message>
+  <wsdl:message name="CheckOutDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckOutDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveSoapIn">
+    <wsdl:part name="parameters" element="tns:Move" />
+  </wsdl:message>
+  <wsdl:message name="MoveSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveAndEditSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveAndEdit" />
+  </wsdl:message>
+  <wsdl:message name="MoveAndEditSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveAndEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopySoapIn">
+    <wsdl:part name="parameters" element="tns:Copy" />
+  </wsdl:message>
+  <wsdl:message name="CopySoapOut">
+    <wsdl:part name="parameters" element="tns:CopyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyAndEditSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyAndEdit" />
+  </wsdl:message>
+  <wsdl:message name="CopyAndEditSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyAndEditResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddLinksSoapIn">
+    <wsdl:part name="parameters" element="tns:AddLinks" />
+  </wsdl:message>
+  <wsdl:message name="AddLinksSoapOut">
+    <wsdl:part name="parameters" element="tns:AddLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveLinksSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveLinks" />
+  </wsdl:message>
+  <wsdl:message name="RemoveLinksSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecoverSoapIn">
+    <wsdl:part name="parameters" element="tns:Recover" />
+  </wsdl:message>
+  <wsdl:message name="RecoverSoapOut">
+    <wsdl:part name="parameters" element="tns:RecoverResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMultiMetadataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMultiMetadata" />
+  </wsdl:message>
+  <wsdl:message name="SetMultiMetadataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMultiMetadataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsToSendSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsToSend" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsToSendSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsToSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileExtensionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileExtensions" />
+  </wsdl:message>
+  <wsdl:message name="GetFileExtensionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileExtensionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRemoveFavouritesSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRemoveFavourites" />
+  </wsdl:message>
+  <wsdl:message name="AddRemoveFavouritesSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRemoveFavouritesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentId" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionId" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailWithDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:SendEmailWithDocuments" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailWithDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:SendEmailWithDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentUrl" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLinkSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentLink" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLinkSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentLinkResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFTSServiceStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFTSServiceStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetFTSServiceStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFTSServiceStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentOwnerGuidSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentOwnerGuid" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentOwnerGuidSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentOwnerGuidResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLibraryAuditLogsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLibraryAuditLogs" />
+  </wsdl:message>
+  <wsdl:message name="GetLibraryAuditLogsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLibraryAuditLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InvokeUserActionSoapIn">
+    <wsdl:part name="parameters" element="tns:InvokeUserAction" />
+  </wsdl:message>
+  <wsdl:message name="InvokeUserActionSoapOut">
+    <wsdl:part name="parameters" element="tns:InvokeUserActionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDocument" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentWithAutoFilingSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDocumentWithAutoFiling" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentWithAutoFilingSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDocumentWithAutoFilingResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDocumentInfo" />
+  </wsdl:message>
+  <wsdl:message name="AddDocumentInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDocumentInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMetadataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMetadata" />
+  </wsdl:message>
+  <wsdl:message name="SetMetadataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMetadataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsCheckedOutSoapIn">
+    <wsdl:part name="parameters" element="tns:IsCheckedOut" />
+  </wsdl:message>
+  <wsdl:message name="IsCheckedOutSoapOut">
+    <wsdl:part name="parameters" element="tns:IsCheckedOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsCheckedOutBySoapIn">
+    <wsdl:part name="parameters" element="tns:IsCheckedOutBy" />
+  </wsdl:message>
+  <wsdl:message name="IsCheckedOutBySoapOut">
+    <wsdl:part name="parameters" element="tns:IsCheckedOutByResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckInDocumentsWithNoChangesSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckInDocumentsWithNoChanges" />
+  </wsdl:message>
+  <wsdl:message name="CheckInDocumentsWithNoChangesSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckInDocumentsWithNoChangesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckInSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIn" />
+  </wsdl:message>
+  <wsdl:message name="CheckInSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckInResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReinstateAsLatestVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:ReinstateAsLatestVersion" />
+  </wsdl:message>
+  <wsdl:message name="ReinstateAsLatestVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:ReinstateAsLatestVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDocumentTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeDocumentType" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDocumentTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeDocumentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeType" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertToOfflineSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertToOffline" />
+  </wsdl:message>
+  <wsdl:message name="ConvertToOfflineSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertToOfflineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertToOfflineByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertToOfflineById" />
+  </wsdl:message>
+  <wsdl:message name="ConvertToOfflineByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertToOfflineByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertToElectronicSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertToElectronic" />
+  </wsdl:message>
+  <wsdl:message name="ConvertToElectronicSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertToElectronicResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDocumentsOwnerSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeDocumentsOwner" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDocumentsOwnerSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeDocumentsOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentName" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionName" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentNameAndSchemaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentNameAndSchema" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentNameAndSchemaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentNameAndSchemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentLocation" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoTaggingForDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAutoTaggingForDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoTaggingForDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAutoTaggingForDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoTaggingForSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAutoTaggingForSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoTaggingForSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAutoTaggingForSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoTaggingForFoldersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAutoTaggingForFolders" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoTaggingForFoldersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAutoTaggingForFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveSoapIn">
+    <wsdl:part name="parameters" element="tns:Archive" />
+  </wsdl:message>
+  <wsdl:message name="ArchiveSoapOut">
+    <wsdl:part name="parameters" element="tns:ArchiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddShortcutSoapIn">
+    <wsdl:part name="parameters" element="tns:AddShortcut" />
+  </wsdl:message>
+  <wsdl:message name="AddShortcutSoapOut">
+    <wsdl:part name="parameters" element="tns:AddShortcutResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckShortcutsExistSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckShortcutsExist" />
+  </wsdl:message>
+  <wsdl:message name="CheckShortcutsExistSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckShortcutsExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSelection" />
+  </wsdl:message>
+  <wsdl:message name="CreateSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionContentSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSelectionContent" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionContentSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSelectionContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionDeletedSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSelectionDeleted" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionDeletedSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSelectionDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSelectionLocation" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSelectionLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAllCanUnArchiveSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAllCanUnArchive" />
+  </wsdl:message>
+  <wsdl:message name="CheckAllCanUnArchiveSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAllCanUnArchiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDocumentsInWorkflowSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDocumentsInWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="CheckDocumentsInWorkflowSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDocumentsInWorkflowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsInSchemasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsInSchemas" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsInSchemasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsInSchemasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsInSchemaTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsInSchemaType" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsInSchemaTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsInSchemaTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionSchemaTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSelectionSchemaType" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionSchemaTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSelectionSchemaTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionDocumentTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSelectionDocumentType" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionDocumentTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSelectionDocumentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAllCanChangeTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAllCanChangeType" />
+  </wsdl:message>
+  <wsdl:message name="CheckAllCanChangeTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAllCanChangeTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAllCanConvertToElectronicSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAllCanConvertToElectronic" />
+  </wsdl:message>
+  <wsdl:message name="CheckAllCanConvertToElectronicSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAllCanConvertToElectronicResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDocumentTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDocumentType" />
+  </wsdl:message>
+  <wsdl:message name="CheckDocumentTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDocumentTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsWithCustomNamingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsWithCustomNaming" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsWithCustomNamingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsWithCustomNamingResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionDocumentNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSelectionDocumentNumber" />
+  </wsdl:message>
+  <wsdl:message name="CheckSelectionDocumentNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSelectionDocumentNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveSelection" />
+  </wsdl:message>
+  <wsdl:message name="RemoveSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetShortcutsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShortcutsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetShortcutsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShortcutsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckedOutDocumentsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCheckedOutDocumentsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckedOutDocumentsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCheckedOutDocumentsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveWorkflowDocumentsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkflowDocumentsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveWorkflowDocumentsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkflowDocumentsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveWorkflowDocumentsForCheckOutSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkflowDocumentsForCheckOut" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveWorkflowDocumentsForCheckOutSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkflowDocumentsForCheckOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLastVisibleVersionsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLastVisibleVersionsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetLastVisibleVersionsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLastVisibleVersionsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNotLastVersionsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNotLastVersionsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetNotLastVersionsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNotLastVersionsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLockedMarkupDocumentsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLockedMarkupDocumentsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetLockedMarkupDocumentsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLockedMarkupDocumentsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSelectionContentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSelectionContent" />
+  </wsdl:message>
+  <wsdl:message name="GetSelectionContentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSelectionContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryVersionsFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBinaryVersionsFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryVersionsFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBinaryVersionsFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSchemaTypesFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchemaTypesFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetSchemaTypesFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchemaTypesFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateWorkingDocumentSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateWorkingDocumentSelection" />
+  </wsdl:message>
+  <wsdl:message name="CreateWorkingDocumentSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateWorkingDocumentSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSchemaFromSelectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentSchemaFromSelection" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSchemaFromSelectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentSchemaFromSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDocuments" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrepareDocumentsToDownloadSoapIn">
+    <wsdl:part name="parameters" element="tns:PrepareDocumentsToDownload" />
+  </wsdl:message>
+  <wsdl:message name="PrepareDocumentsToDownloadSoapOut">
+    <wsdl:part name="parameters" element="tns:PrepareDocumentsToDownloadResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DocumentManagerSoap">
+    <wsdl:operation name="GetDocumentsToDownload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the selected documents can be downloaded and returns detailed information.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsToDownloadSoapIn" />
+      <wsdl:output message="tns:GetDocumentsToDownloadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleDocumentToDownload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the document can be downloaded and returns detailed information.</wsdl:documentation>
+      <wsdl:input message="tns:GetSingleDocumentToDownloadSoapIn" />
+      <wsdl:output message="tns:GetSingleDocumentToDownloadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsToCheckIn">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the selected documents can be checked in and returns detailed information.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsToCheckInSoapIn" />
+      <wsdl:output message="tns:GetDocumentsToCheckInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrepareSingleDocumentToDownload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves information about specified document and creates download token for it</wsdl:documentation>
+      <wsdl:input message="tns:PrepareSingleDocumentToDownloadSoapIn" />
+      <wsdl:output message="tns:PrepareSingleDocumentToDownloadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrepareSingleDocumentToDownloadByDocumentVersionId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves information about specified document and creates download token for it</wsdl:documentation>
+      <wsdl:input message="tns:PrepareSingleDocumentToDownloadByDocumentVersionIdSoapIn" />
+      <wsdl:output message="tns:PrepareSingleDocumentToDownloadByDocumentVersionIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUsageLogEntryForDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add usage log entry for document</wsdl:documentation>
+      <wsdl:input message="tns:AddUsageLogEntryForDocumentSoapIn" />
+      <wsdl:output message="tns:AddUsageLogEntryForDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckOutDocuments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks out selected documents</wsdl:documentation>
+      <wsdl:input message="tns:CheckOutDocumentsSoapIn" />
+      <wsdl:output message="tns:CheckOutDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Moves documents from selection to specified destination</wsdl:documentation>
+      <wsdl:input message="tns:MoveSoapIn" />
+      <wsdl:output message="tns:MoveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveAndEdit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Moves documents from selection to specified destination and edit their metadata</wsdl:documentation>
+      <wsdl:input message="tns:MoveAndEditSoapIn" />
+      <wsdl:output message="tns:MoveAndEditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Copy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Copies documents from selection to specified folder</wsdl:documentation>
+      <wsdl:input message="tns:CopySoapIn" />
+      <wsdl:output message="tns:CopySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyAndEdit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Copies documents from selection to specified folder and edit metadata</wsdl:documentation>
+      <wsdl:input message="tns:CopyAndEditSoapIn" />
+      <wsdl:output message="tns:CopyAndEditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates links between documents from selection and specified document</wsdl:documentation>
+      <wsdl:input message="tns:AddLinksSoapIn" />
+      <wsdl:output message="tns:AddLinksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes links between documents from selection and specified document</wsdl:documentation>
+      <wsdl:input message="tns:RemoveLinksSoapIn" />
+      <wsdl:output message="tns:RemoveLinksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Recover">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Recovers documents specified by selection</wsdl:documentation>
+      <wsdl:input message="tns:RecoverSoapIn" />
+      <wsdl:output message="tns:RecoverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMultiMetadata">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets metadata of documents from selection</wsdl:documentation>
+      <wsdl:input message="tns:SetMultiMetadataSoapIn" />
+      <wsdl:output message="tns:SetMultiMetadataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsToSend">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns brief information about documents from selection.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsToSendSoapIn" />
+      <wsdl:output message="tns:GetDocumentsToSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileExtensions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns collection of file extensions available in the system</wsdl:documentation>
+      <wsdl:input message="tns:GetFileExtensionsSoapIn" />
+      <wsdl:output message="tns:GetFileExtensionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRemoveFavourites">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds or removes document from favourites</wsdl:documentation>
+      <wsdl:input message="tns:AddRemoveFavouritesSoapIn" />
+      <wsdl:output message="tns:AddRemoveFavouritesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the id of document.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentIdSoapIn" />
+      <wsdl:output message="tns:GetDocumentIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the version id of document.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentVersionIdSoapIn" />
+      <wsdl:output message="tns:GetDocumentVersionIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailWithDocuments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends email with specified documents attached</wsdl:documentation>
+      <wsdl:input message="tns:SendEmailWithDocumentsSoapIn" />
+      <wsdl:output message="tns:SendEmailWithDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentUrl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns web client url for appropriate document</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentUrlSoapIn" />
+      <wsdl:output message="tns:GetDocumentUrlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLink">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns link for appropriate document</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentLinkSoapIn" />
+      <wsdl:output message="tns:GetDocumentLinkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFTSServiceStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return status of Full Text Search</wsdl:documentation>
+      <wsdl:input message="tns:GetFTSServiceStatusSoapIn" />
+      <wsdl:output message="tns:GetFTSServiceStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentOwnerGuid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return document owner guid</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentOwnerGuidSoapIn" />
+      <wsdl:output message="tns:GetDocumentOwnerGuidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryAuditLogs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information from the library audit log</wsdl:documentation>
+      <wsdl:input message="tns:GetLibraryAuditLogsSoapIn" />
+      <wsdl:output message="tns:GetLibraryAuditLogsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InvokeUserAction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Invoke a user action from plug-in.</wsdl:documentation>
+      <wsdl:input message="tns:InvokeUserActionSoapIn" />
+      <wsdl:output message="tns:InvokeUserActionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds document to library manager and commits it in document repository</wsdl:documentation>
+      <wsdl:input message="tns:AddDocumentSoapIn" />
+      <wsdl:output message="tns:AddDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentWithAutoFiling">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds document to library manager, creates location using auto filing script and commits document in document repository</wsdl:documentation>
+      <wsdl:input message="tns:AddDocumentWithAutoFilingSoapIn" />
+      <wsdl:output message="tns:AddDocumentWithAutoFilingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds document to library manager with advanced options and commits it in document repository</wsdl:documentation>
+      <wsdl:input message="tns:AddDocumentInfoSoapIn" />
+      <wsdl:output message="tns:AddDocumentInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMetadata">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds new or overwrites previous version of document's metadata</wsdl:documentation>
+      <wsdl:input message="tns:SetMetadataSoapIn" />
+      <wsdl:output message="tns:SetMetadataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckedOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return true if the document is checked out.</wsdl:documentation>
+      <wsdl:input message="tns:IsCheckedOutSoapIn" />
+      <wsdl:output message="tns:IsCheckedOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckedOutBy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return name of the user who checked out the document.</wsdl:documentation>
+      <wsdl:input message="tns:IsCheckedOutBySoapIn" />
+      <wsdl:output message="tns:IsCheckedOutBySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckInDocumentsWithNoChanges">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel check out of selected documents.</wsdl:documentation>
+      <wsdl:input message="tns:CheckInDocumentsWithNoChangesSoapIn" />
+      <wsdl:output message="tns:CheckInDocumentsWithNoChangesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIn">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds new version of document and commits it in document repository</wsdl:documentation>
+      <wsdl:input message="tns:CheckInSoapIn" />
+      <wsdl:output message="tns:CheckInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReinstateAsLatestVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reinstate the given binary version as the latest version of the document.</wsdl:documentation>
+      <wsdl:input message="tns:ReinstateAsLatestVersionSoapIn" />
+      <wsdl:output message="tns:ReinstateAsLatestVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDocumentType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Change type of single document between electronic document and record.</wsdl:documentation>
+      <wsdl:input message="tns:ChangeDocumentTypeSoapIn" />
+      <wsdl:output message="tns:ChangeDocumentTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Change type of selected documents between electronic document and record.</wsdl:documentation>
+      <wsdl:input message="tns:ChangeTypeSoapIn" />
+      <wsdl:output message="tns:ChangeTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToOffline">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Convert selected documents to offline documents and delete files from repository.</wsdl:documentation>
+      <wsdl:input message="tns:ConvertToOfflineSoapIn" />
+      <wsdl:output message="tns:ConvertToOfflineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToOfflineById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Convert a document to offline document and delete file from repository.</wsdl:documentation>
+      <wsdl:input message="tns:ConvertToOfflineByIdSoapIn" />
+      <wsdl:output message="tns:ConvertToOfflineByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToElectronic">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Convert offline document to electronic document by checking in a new version.</wsdl:documentation>
+      <wsdl:input message="tns:ConvertToElectronicSoapIn" />
+      <wsdl:output message="tns:ConvertToElectronicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDocumentsOwner">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Changes owner of the selected documents.</wsdl:documentation>
+      <wsdl:input message="tns:ChangeDocumentsOwnerSoapIn" />
+      <wsdl:output message="tns:ChangeDocumentsOwnerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the name of the given document.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentNameSoapIn" />
+      <wsdl:output message="tns:GetDocumentNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the name of the given document version.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentVersionNameSoapIn" />
+      <wsdl:output message="tns:GetDocumentVersionNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentNameAndSchema">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the document and schema names of the given metadata version.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentNameAndSchemaSoapIn" />
+      <wsdl:output message="tns:GetDocumentNameAndSchemaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get cabinet, drawer, (optional) folder group and folder of the document.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentLocationSoapIn" />
+      <wsdl:output message="tns:GetDocumentLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get auto-tagging settings of the folder in which the document is located.</wsdl:documentation>
+      <wsdl:input message="tns:GetAutoTaggingForDocumentSoapIn" />
+      <wsdl:output message="tns:GetAutoTaggingForDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check auto-tagging settings for all documents in selection.</wsdl:documentation>
+      <wsdl:input message="tns:GetAutoTaggingForSelectionSoapIn" />
+      <wsdl:output message="tns:GetAutoTaggingForSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForFolders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check auto-tagging settings for folders.</wsdl:documentation>
+      <wsdl:input message="tns:GetAutoTaggingForFoldersSoapIn" />
+      <wsdl:output message="tns:GetAutoTaggingForFoldersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Archive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Move the selected document to the Library Archive.</wsdl:documentation>
+      <wsdl:input message="tns:ArchiveSoapIn" />
+      <wsdl:output message="tns:ArchiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddShortcut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a shortcut to a document in the given folder.</wsdl:documentation>
+      <wsdl:input message="tns:AddShortcutSoapIn" />
+      <wsdl:output message="tns:AddShortcutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckShortcutsExist">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return true if at least one shortcut exists in the system</wsdl:documentation>
+      <wsdl:input message="tns:CheckShortcutsExistSoapIn" />
+      <wsdl:output message="tns:CheckShortcutsExistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates selection based on snapshot</wsdl:documentation>
+      <wsdl:input message="tns:CreateSelectionSoapIn" />
+      <wsdl:output message="tns:CreateSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks whether there are documents in given state in selection</wsdl:documentation>
+      <wsdl:input message="tns:CheckSelectionContentSoapIn" />
+      <wsdl:output message="tns:CheckSelectionContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDeleted">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if selection contains any deleted documents.</wsdl:documentation>
+      <wsdl:input message="tns:CheckSelectionDeletedSoapIn" />
+      <wsdl:output message="tns:CheckSelectionDeletedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves information about location of document from selection.</wsdl:documentation>
+      <wsdl:input message="tns:CheckSelectionLocationSoapIn" />
+      <wsdl:output message="tns:CheckSelectionLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanUnArchive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if all selected documents can be un-archived.</wsdl:documentation>
+      <wsdl:input message="tns:CheckAllCanUnArchiveSoapIn" />
+      <wsdl:output message="tns:CheckAllCanUnArchiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDocumentsInWorkflow">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if selected document have an active workflow or are supporting documents.</wsdl:documentation>
+      <wsdl:input message="tns:CheckDocumentsInWorkflowSoapIn" />
+      <wsdl:output message="tns:CheckDocumentsInWorkflowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsInSchemas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information about documents from selection in terms of belonging to document schemas</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsInSchemasSoapIn" />
+      <wsdl:output message="tns:GetDocumentsInSchemasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsInSchemaType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of documents from selection of particular schema type</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsInSchemaTypeSoapIn" />
+      <wsdl:output message="tns:GetDocumentsInSchemaTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionSchemaType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is obsolete.</wsdl:documentation>
+      <wsdl:input message="tns:CheckSelectionSchemaTypeSoapIn" />
+      <wsdl:output message="tns:CheckSelectionSchemaTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDocumentType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return information about format of documents in selection.</wsdl:documentation>
+      <wsdl:input message="tns:CheckSelectionDocumentTypeSoapIn" />
+      <wsdl:output message="tns:CheckSelectionDocumentTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanChangeType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if all documents can be converted between documents and records.</wsdl:documentation>
+      <wsdl:input message="tns:CheckAllCanChangeTypeSoapIn" />
+      <wsdl:output message="tns:CheckAllCanChangeTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanConvertToElectronic">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if all documents can be converted from offline to electronic.</wsdl:documentation>
+      <wsdl:input message="tns:CheckAllCanConvertToElectronicSoapIn" />
+      <wsdl:output message="tns:CheckAllCanConvertToElectronicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDocumentType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return information about format of given documents.</wsdl:documentation>
+      <wsdl:input message="tns:CheckDocumentTypeSoapIn" />
+      <wsdl:output message="tns:CheckDocumentTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsWithCustomNaming">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return a list of documents with custom naming.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsWithCustomNamingSoapIn" />
+      <wsdl:output message="tns:GetDocumentsWithCustomNamingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDocumentNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if selected documents have document numbers.</wsdl:documentation>
+      <wsdl:input message="tns:CheckSelectionDocumentNumberSoapIn" />
+      <wsdl:output message="tns:CheckSelectionDocumentNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes specified selection</wsdl:documentation>
+      <wsdl:input message="tns:RemoveSelectionSoapIn" />
+      <wsdl:output message="tns:RemoveSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShortcutsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of shortcuts in selection</wsdl:documentation>
+      <wsdl:input message="tns:GetShortcutsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetShortcutsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckedOutDocumentsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves names of checked out documents from selection</wsdl:documentation>
+      <wsdl:input message="tns:GetCheckedOutDocumentsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetCheckedOutDocumentsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkflowDocumentsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves names of documents from selection which are associated with active workflows</wsdl:documentation>
+      <wsdl:input message="tns:GetActiveWorkflowDocumentsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetActiveWorkflowDocumentsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkflowDocumentsForCheckOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves names of documents from selection which are associated with active workflows for check out</wsdl:documentation>
+      <wsdl:input message="tns:GetActiveWorkflowDocumentsForCheckOutSoapIn" />
+      <wsdl:output message="tns:GetActiveWorkflowDocumentsForCheckOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastVisibleVersionsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves names of documents from selection which are in the last visible version and it is not the really last version</wsdl:documentation>
+      <wsdl:input message="tns:GetLastVisibleVersionsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetLastVisibleVersionsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotLastVersionsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves names of documents from selection which are not the last version</wsdl:documentation>
+      <wsdl:input message="tns:GetNotLastVersionsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetNotLastVersionsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLockedMarkupDocumentsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves names of documents from selection which are associated with locked markups</wsdl:documentation>
+      <wsdl:input message="tns:GetLockedMarkupDocumentsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetLockedMarkupDocumentsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSelectionContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information about all documents from specified selection</wsdl:documentation>
+      <wsdl:input message="tns:GetSelectionContentSoapIn" />
+      <wsdl:output message="tns:GetSelectionContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryVersionsFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns binary version ids of documents form selection</wsdl:documentation>
+      <wsdl:input message="tns:GetBinaryVersionsFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetBinaryVersionsFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemaTypesFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns schemas for all documents from selection</wsdl:documentation>
+      <wsdl:input message="tns:GetSchemaTypesFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetSchemaTypesFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateWorkingDocumentSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a selection containing the last version of the given document if the given version number is the latest version.</wsdl:documentation>
+      <wsdl:input message="tns:CreateWorkingDocumentSelectionSoapIn" />
+      <wsdl:output message="tns:CreateWorkingDocumentSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentSchemaFromSelection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check document schema in selection (only documents, ignore shortcuts)</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentSchemaFromSelectionSoapIn" />
+      <wsdl:output message="tns:GetDocumentSchemaFromSelectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocuments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes documents form selection</wsdl:documentation>
+      <wsdl:input message="tns:DeleteDocumentsSoapIn" />
+      <wsdl:output message="tns:DeleteDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrepareDocumentsToDownload">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Prepares documents to download and creates download token for them.</wsdl:documentation>
+      <wsdl:input message="tns:PrepareDocumentsToDownloadSoapIn" />
+      <wsdl:output message="tns:PrepareDocumentsToDownloadSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentManagerSoap" type="tns:DocumentManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDocumentsToDownload">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsToDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleDocumentToDownload">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetSingleDocumentToDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsToCheckIn">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsToCheckIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareSingleDocumentToDownload">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/PrepareSingleDocumentToDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareSingleDocumentToDownloadByDocumentVersionId">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/PrepareSingleDocumentToDownloadByDocumentVersionId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUsageLogEntryForDocument">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddUsageLogEntryForDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckOutDocuments">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckOutDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/Move" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveAndEdit">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/MoveAndEdit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Copy">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/Copy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyAndEdit">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CopyAndEdit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLinks">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinks">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/RemoveLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recover">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/Recover" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMultiMetadata">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/SetMultiMetadata" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsToSend">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsToSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileExtensions">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetFileExtensions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRemoveFavourites">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddRemoveFavourites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentId">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionId">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentVersionId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailWithDocuments">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/SendEmailWithDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentUrl">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLink">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentLink" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFTSServiceStatus">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetFTSServiceStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentOwnerGuid">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentOwnerGuid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryAuditLogs">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetLibraryAuditLogs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InvokeUserAction">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/InvokeUserAction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocument">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentWithAutoFiling">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddDocumentWithAutoFiling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentInfo">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMetadata">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/SetMetadata" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckedOut">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/IsCheckedOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckedOutBy">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/IsCheckedOutBy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckInDocumentsWithNoChanges">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckInDocumentsWithNoChanges" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIn">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReinstateAsLatestVersion">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ReinstateAsLatestVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDocumentType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ChangeDocumentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ChangeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToOffline">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ConvertToOffline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToOfflineById">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ConvertToOfflineById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToElectronic">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ConvertToElectronic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDocumentsOwner">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/ChangeDocumentsOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentName">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionName">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentVersionName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentNameAndSchema">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentNameAndSchema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLocation">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForDocument">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetAutoTaggingForDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetAutoTaggingForSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForFolders">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetAutoTaggingForFolders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Archive">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/Archive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddShortcut">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddShortcut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckShortcutsExist">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckShortcutsExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CreateSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionContent">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDeleted">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionDeleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionLocation">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanUnArchive">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckAllCanUnArchive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDocumentsInWorkflow">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckDocumentsInWorkflow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsInSchemas">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsInSchemas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsInSchemaType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsInSchemaType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionSchemaType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionSchemaType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDocumentType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionDocumentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanChangeType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckAllCanChangeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanConvertToElectronic">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckAllCanConvertToElectronic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDocumentType">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckDocumentType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsWithCustomNaming">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsWithCustomNaming" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDocumentNumber">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionDocumentNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/RemoveSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShortcutsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetShortcutsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckedOutDocumentsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetCheckedOutDocumentsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkflowDocumentsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetActiveWorkflowDocumentsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkflowDocumentsForCheckOut">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetActiveWorkflowDocumentsForCheckOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastVisibleVersionsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetLastVisibleVersionsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotLastVersionsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetNotLastVersionsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLockedMarkupDocumentsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetLockedMarkupDocumentsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSelectionContent">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetSelectionContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryVersionsFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetBinaryVersionsFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemaTypesFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetSchemaTypesFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWorkingDocumentSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/CreateWorkingDocumentSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentSchemaFromSelection">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentSchemaFromSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocuments">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/DeleteDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareDocumentsToDownload">
+      <soap:operation soapAction="http://filehold.com/librarymanager/documentmanager/PrepareDocumentsToDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DocumentManagerSoap12" type="tns:DocumentManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDocumentsToDownload">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsToDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleDocumentToDownload">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetSingleDocumentToDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsToCheckIn">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsToCheckIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareSingleDocumentToDownload">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/PrepareSingleDocumentToDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareSingleDocumentToDownloadByDocumentVersionId">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/PrepareSingleDocumentToDownloadByDocumentVersionId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUsageLogEntryForDocument">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddUsageLogEntryForDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckOutDocuments">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckOutDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/Move" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveAndEdit">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/MoveAndEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Copy">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/Copy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyAndEdit">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CopyAndEdit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLinks">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinks">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/RemoveLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recover">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/Recover" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMultiMetadata">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/SetMultiMetadata" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsToSend">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsToSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileExtensions">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetFileExtensions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRemoveFavourites">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddRemoveFavourites" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentId">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionId">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentVersionId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailWithDocuments">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/SendEmailWithDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentUrl">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLink">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentLink" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFTSServiceStatus">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetFTSServiceStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentOwnerGuid">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentOwnerGuid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibraryAuditLogs">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetLibraryAuditLogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InvokeUserAction">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/InvokeUserAction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocument">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentWithAutoFiling">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddDocumentWithAutoFiling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDocumentInfo">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMetadata">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/SetMetadata" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckedOut">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/IsCheckedOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckedOutBy">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/IsCheckedOutBy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckInDocumentsWithNoChanges">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckInDocumentsWithNoChanges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIn">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReinstateAsLatestVersion">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ReinstateAsLatestVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDocumentType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ChangeDocumentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ChangeType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToOffline">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ConvertToOffline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToOfflineById">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ConvertToOfflineById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToElectronic">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ConvertToElectronic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDocumentsOwner">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/ChangeDocumentsOwner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentName">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionName">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentVersionName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentNameAndSchema">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentNameAndSchema" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLocation">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForDocument">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetAutoTaggingForDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetAutoTaggingForSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoTaggingForFolders">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetAutoTaggingForFolders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Archive">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/Archive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddShortcut">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/AddShortcut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckShortcutsExist">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckShortcutsExist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CreateSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionContent">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDeleted">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionDeleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionLocation">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanUnArchive">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckAllCanUnArchive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDocumentsInWorkflow">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckDocumentsInWorkflow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsInSchemas">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsInSchemas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsInSchemaType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsInSchemaType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionSchemaType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionSchemaType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDocumentType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionDocumentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanChangeType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckAllCanChangeType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAllCanConvertToElectronic">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckAllCanConvertToElectronic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDocumentType">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckDocumentType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsWithCustomNaming">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentsWithCustomNaming" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSelectionDocumentNumber">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CheckSelectionDocumentNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/RemoveSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShortcutsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetShortcutsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckedOutDocumentsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetCheckedOutDocumentsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkflowDocumentsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetActiveWorkflowDocumentsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkflowDocumentsForCheckOut">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetActiveWorkflowDocumentsForCheckOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastVisibleVersionsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetLastVisibleVersionsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotLastVersionsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetNotLastVersionsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLockedMarkupDocumentsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetLockedMarkupDocumentsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSelectionContent">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetSelectionContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryVersionsFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetBinaryVersionsFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemaTypesFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetSchemaTypesFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWorkingDocumentSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/CreateWorkingDocumentSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentSchemaFromSelection">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/GetDocumentSchemaFromSelection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocuments">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/DeleteDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareDocumentsToDownload">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/documentmanager/PrepareDocumentsToDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentManager">
+    <wsdl:port name="DocumentManagerSoap" binding="tns:DocumentManagerSoap">
+      <soap:address location="http://filehold/FH/FileHold/LibraryManager/DocumentManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DocumentManagerSoap12" binding="tns:DocumentManagerSoap12">
+      <soap12:address location="http://filehold/FH/FileHold/LibraryManager/DocumentManager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

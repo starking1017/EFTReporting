@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://filehold.com/userrolemanager/sessionmanager/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://filehold.com/userrolemanager/sessionmanager/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/userrolemanager/sessionmanager/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="StartSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="clientType" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Client">
+        <s:restriction base="s:string">
+          <s:enumeration value="WebClient" />
+          <s:enumeration value="DesktopApplication" />
+          <s:enumeration value="SharepointClient" />
+          <s:enumeration value="MobileWebClient" />
+          <s:enumeration value="CustomClient" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="StartSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartSessionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartSessionAndChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oldPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="clientType" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartSessionAndChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartSessionAndChangePasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartSessionForDomainUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="domain" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="clientType" type="tns:Client" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartSessionForDomainUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartSessionForDomainUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndSessionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsSessionValid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="keepAlive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSessionValidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsSessionValidResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSessionInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSessionInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSessionInfoResult" type="tns:SessionInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SessionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserGuid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupGuids" type="tns:ArrayOfGuid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDomainUser" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllowedOperations" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGuid">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="guid" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UserSelfRegister">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="selfRegisterUser" type="tns:SelfRegisterUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SelfRegisterUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryRegion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Home" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Initials" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstantMessanger" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IPPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Office" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pager" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvince" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebPage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Work" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipPostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POBox" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UserSelfRegisterResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSelfRegistrationSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="allowsSelfRegistration" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="defaultFileHoldGroup" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSelfRegistrationSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="allowsSelfRegistration" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="defaultFileHoldGroup" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLogonAndPasswordSecuritySettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLogonAndPasswordSecuritySettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLogonAndPasswordSecuritySettingsResult" type="tns:LogonAndPasswordSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LogonAndPasswordSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LogonAttemptsAllowedTimes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LogInactiveUsersOffAfterMinutes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinNumberOfCharactersInPassword" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordMustContainsUpperCase" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordMustContainsLowerCase" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordMustContainsSpecialCharacter" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordMustContainsNumber" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowPasswordReuse" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordExpiresAfterDays" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowPasswordRecovery" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStoredDomains">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStoredDomainsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStoredDomainsResult" type="tns:ArrayOfDomainInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDomainInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DomainInfo" nillable="true" type="tns:DomainInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DomainInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Container" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserLogin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserPassword" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IsCurrentLicenseActive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="features" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IsCurrentLicenseActiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsCurrentLicenseActiveResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="features" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAPIVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientVersion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serverVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAPIVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAPIVersionResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serverVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultDomain">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDefaultDomainResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDefaultDomainResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="StartSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:StartSession" />
+  </wsdl:message>
+  <wsdl:message name="StartSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:StartSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartSessionAndChangePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:StartSessionAndChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="StartSessionAndChangePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:StartSessionAndChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartSessionForDomainUserSoapIn">
+    <wsdl:part name="parameters" element="tns:StartSessionForDomainUser" />
+  </wsdl:message>
+  <wsdl:message name="StartSessionForDomainUserSoapOut">
+    <wsdl:part name="parameters" element="tns:StartSessionForDomainUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="EndSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:EndSession" />
+  </wsdl:message>
+  <wsdl:message name="EndSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:EndSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsSessionValidSoapIn">
+    <wsdl:part name="parameters" element="tns:IsSessionValid" />
+  </wsdl:message>
+  <wsdl:message name="IsSessionValidSoapOut">
+    <wsdl:part name="parameters" element="tns:IsSessionValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSessionInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSessionInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSessionInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSessionInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserSelfRegisterSoapIn">
+    <wsdl:part name="parameters" element="tns:UserSelfRegister" />
+  </wsdl:message>
+  <wsdl:message name="UserSelfRegisterSoapOut">
+    <wsdl:part name="parameters" element="tns:UserSelfRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSelfRegistrationSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSelfRegistrationSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetSelfRegistrationSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSelfRegistrationSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLogonAndPasswordSecuritySettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLogonAndPasswordSecuritySettings" />
+  </wsdl:message>
+  <wsdl:message name="GetLogonAndPasswordSecuritySettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLogonAndPasswordSecuritySettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStoredDomainsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStoredDomains" />
+  </wsdl:message>
+  <wsdl:message name="GetStoredDomainsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStoredDomainsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsCurrentLicenseActiveSoapIn">
+    <wsdl:part name="parameters" element="tns:IsCurrentLicenseActive" />
+  </wsdl:message>
+  <wsdl:message name="IsCurrentLicenseActiveSoapOut">
+    <wsdl:part name="parameters" element="tns:IsCurrentLicenseActiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAPIVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAPIVersion" />
+  </wsdl:message>
+  <wsdl:message name="CheckAPIVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAPIVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultDomainSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultDomain" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultDomainSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultDomainResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SessionManagerSoap">
+    <wsdl:operation name="StartSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Start session for the user based on specified credentials</wsdl:documentation>
+      <wsdl:input message="tns:StartSessionSoapIn" />
+      <wsdl:output message="tns:StartSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartSessionAndChangePassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Start session for the user based on specified credentials and change his/her password</wsdl:documentation>
+      <wsdl:input message="tns:StartSessionAndChangePasswordSoapIn" />
+      <wsdl:output message="tns:StartSessionAndChangePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartSessionForDomainUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Start session for a user from specified domain based on specified credentials</wsdl:documentation>
+      <wsdl:input message="tns:StartSessionForDomainUserSoapIn" />
+      <wsdl:output message="tns:StartSessionForDomainUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Close specified session</wsdl:documentation>
+      <wsdl:input message="tns:EndSessionSoapIn" />
+      <wsdl:output message="tns:EndSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSessionValid">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check whether particular session is still valid</wsdl:documentation>
+      <wsdl:input message="tns:IsSessionValidSoapIn" />
+      <wsdl:output message="tns:IsSessionValidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return information about particular session</wsdl:documentation>
+      <wsdl:input message="tns:GetSessionInfoSoapIn" />
+      <wsdl:output message="tns:GetSessionInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserSelfRegister">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Register new user if self registration is allowed</wsdl:documentation>
+      <wsdl:input message="tns:UserSelfRegisterSoapIn" />
+      <wsdl:output message="tns:UserSelfRegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSelfRegistrationSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return information about user self registration settings</wsdl:documentation>
+      <wsdl:input message="tns:GetSelfRegistrationSettingsSoapIn" />
+      <wsdl:output message="tns:GetSelfRegistrationSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogonAndPasswordSecuritySettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return logon and password security settings</wsdl:documentation>
+      <wsdl:input message="tns:GetLogonAndPasswordSecuritySettingsSoapIn" />
+      <wsdl:output message="tns:GetLogonAndPasswordSecuritySettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoredDomains">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all available synchronized domains</wsdl:documentation>
+      <wsdl:input message="tns:GetStoredDomainsSoapIn" />
+      <wsdl:output message="tns:GetStoredDomainsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCurrentLicenseActive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if current system license is valid</wsdl:documentation>
+      <wsdl:input message="tns:IsCurrentLicenseActiveSoapIn" />
+      <wsdl:output message="tns:IsCurrentLicenseActiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAPIVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check compatibility between client version and server version</wsdl:documentation>
+      <wsdl:input message="tns:CheckAPIVersionSoapIn" />
+      <wsdl:output message="tns:CheckAPIVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultDomain">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the GUID of the default domain for logon</wsdl:documentation>
+      <wsdl:input message="tns:GetDefaultDomainSoapIn" />
+      <wsdl:output message="tns:GetDefaultDomainSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SessionManagerSoap" type="tns:SessionManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StartSession">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/StartSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartSessionAndChangePassword">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/StartSessionAndChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartSessionForDomainUser">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/StartSessionForDomainUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/EndSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSessionValid">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/IsSessionValid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionInfo">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetSessionInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserSelfRegister">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/UserSelfRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSelfRegistrationSettings">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetSelfRegistrationSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogonAndPasswordSecuritySettings">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetLogonAndPasswordSecuritySettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoredDomains">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetStoredDomains" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCurrentLicenseActive">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/IsCurrentLicenseActive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAPIVersion">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/CheckAPIVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultDomain">
+      <soap:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetDefaultDomain" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SessionManagerSoap12" type="tns:SessionManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StartSession">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/StartSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartSessionAndChangePassword">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/StartSessionAndChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartSessionForDomainUser">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/StartSessionForDomainUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/EndSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSessionValid">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/IsSessionValid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionInfo">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetSessionInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserSelfRegister">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/UserSelfRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSelfRegistrationSettings">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetSelfRegistrationSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogonAndPasswordSecuritySettings">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetLogonAndPasswordSecuritySettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoredDomains">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetStoredDomains" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCurrentLicenseActive">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/IsCurrentLicenseActive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAPIVersion">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/CheckAPIVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultDomain">
+      <soap12:operation soapAction="http://filehold.com/userrolemanager/sessionmanager/GetDefaultDomain" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SessionManager">
+    <wsdl:port name="SessionManagerSoap" binding="tns:SessionManagerSoap">
+      <soap:address location="http://filehold/FH/FileHold/UserRoleManager/SessionManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SessionManagerSoap12" binding="tns:SessionManagerSoap12">
+      <soap12:address location="http://filehold/FH/FileHold/UserRoleManager/SessionManager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

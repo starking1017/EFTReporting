@@ -1,0 +1,3736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://filehold.com/librarymanager/userpreferences/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://filehold.com/librarymanager/userpreferences/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/librarymanager/userpreferences/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetUserMiscSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserMiscSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserMiscSettingsResult" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MiscSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultWebPage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditMetadataCheckIn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClearRequiredMetadataCheckIn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoExpandedDrawers" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultWebPageIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditMetadataCheckInIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClearRequiredMetadataCheckInIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoExpandedDrawersIsSystem" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAdvancedSearchSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AdvancedSearchSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MetadataOnly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeArchive" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllVersions" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HistoricalMetadata" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MetadataOnlyIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeArchiveIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllVersionsIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HistoricalMetadataIsSystem" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAdvancedSearchSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserAdvancedSearchSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserAdvancedSearchSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetAdvancedSearchSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAdvancedSearchSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetAdvancedSearchSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetAdvancedSearchSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAdvancedSearchSettingsSystem">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAdvancedSearchSettingsSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdvancedSearchSettingsSystemResult" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdvancedSearchSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAdvancedSearchSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdvancedSearchSettingsResult" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAdvancedSearchSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAdvancedSearchSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserAdvancedSearchSettingsResult" type="tns:AdvancedSearchSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDontShowMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="messageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDontShowMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDontShowMessageResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DontShowMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="messageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DontShowMessageResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetAllMessages">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetAllMessagesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserDownloadPreferencesInWebClient">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserDownloadPreferencesInWebClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserDownloadPreferencesInWebClientResult" type="tns:DownloadPreferences" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DownloadPreferences">
+        <s:restriction base="s:string">
+          <s:enumeration value="Undefined" />
+          <s:enumeration value="GetCopy" />
+          <s:enumeration value="CheckOut" />
+          <s:enumeration value="PortalUser" />
+          <s:enumeration value="View" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SetUserDownloadPreferencesInWebClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="downloadPreferences" type="tns:DownloadPreferences" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserDownloadPreferencesInWebClientResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemFieldsResult" type="tns:ArrayOfViewColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfViewColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ViewColumn" nillable="true" type="tns:ViewColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ViewColumn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HeaderText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanChangeOrder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanDelete" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSchemaFields">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSchemaFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchemaFieldsResult" type="tns:ArrayOfViewColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViews">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewsResult" type="tns:ArrayOfViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfViewDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ViewDefinition" nillable="true" type="tns:ViewDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ViewDefinition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ViewId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ViewName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPublic" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContainerType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfViewColumn" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortColumn" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SortOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupColumn" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupOrder" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetViewsForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewsForUserResult" type="tns:ArrayOfViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="viewId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewDetailsResult" type="tns:ViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewDetailsForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="viewId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewDetailsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewDetailsForUserResult" type="tns:ViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="view" type="tns:ViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddViewResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddViewForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="view" type="tns:ViewDefinition" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddViewForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddViewForUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="view" type="tns:ViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateViewResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetFixedViewPageSize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFixedViewPageSizeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="viewId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveViewResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SavePersonalView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="context" type="tns:DefaultView" />
+            <s:element minOccurs="0" maxOccurs="1" name="view" type="tns:ViewDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DefaultView">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContainerType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsUserDefault" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectDefault" type="tns:ObjectType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentObjectId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ObjectType">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Cabinet" />
+          <s:enumeration value="Drawer" />
+          <s:enumeration value="FolderGroup" />
+          <s:enumeration value="Folder" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SavePersonalViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SavePersonalViewResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultViewForContext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="context" type="tns:DefaultView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultViewForContextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDefaultViewForContextResult" type="tns:DefaultView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParentViewForContext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="context" type="tns:DefaultView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParentViewForContextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetParentViewForContextResult" type="tns:DefaultView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDefaultViewForContext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="context" type="tns:DefaultView" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceAllUsers" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceChildObjects" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDefaultViewForContextResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetViewSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="folderId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isUserDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewSettingsResult" type="tns:ViewDefinition" />
+            <s:element minOccurs="1" maxOccurs="1" name="isUserDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCustomView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="view" type="tns:ArrayOfViewColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCustomViewResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDefaultView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="view" type="tns:ArrayOfViewColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDefaultViewResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCustomView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomViewResult" type="tns:ArrayOfViewColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetCustomView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetCustomViewResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetViewPageSize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewPageSizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetViewPageSizeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveADAMObjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="adamObjectIds" type="tns:ArrayOfGuid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGuid">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="guid" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RemoveADAMObjectsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetAlertSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AlertSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AddedToFolder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransferedFromFolder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransferedToFolder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeletedFromFolder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentIsCheckedOut" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentIsEmailed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentIsCheckedIn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentMetadataUpdated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendEmail" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailAlertFrequency" type="tns:AlertFrequency" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendReminderEmail" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailReminderFrequency" type="tns:EmailReminderFrequency" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddedToFolderIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransferedFromFolderIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransferedToFolderIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeletedFromFolderIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentIsCheckedOutIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentIsEmailedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentIsCheckedInIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentMetadataUpdatedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendEmailIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailAlertFrequencyIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendReminderEmailIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailReminderFrequencyIsSystem" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="AlertFrequency">
+        <s:restriction base="s:string">
+          <s:enumeration value="Immediately" />
+          <s:enumeration value="DailySummary" />
+          <s:enumeration value="WeeklySummary" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="EmailReminderFrequency">
+        <s:restriction base="s:string">
+          <s:enumeration value="Immediately" />
+          <s:enumeration value="DailySummary" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SetAlertSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserAlertSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserAlertSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetAlertSystemSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAlertSystemSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetAlertSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetAlertSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAlertSystemSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAlertSystemSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlertSystemSettingsResult" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlertSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAlertSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlertSettingsResult" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAlertSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAlertSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserAlertSettingsResult" type="tns:AlertSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="objectId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isFolder" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAlertResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="objectId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isFolder" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveAlertResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAlerts">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAlertsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlertsResult" type="tns:ArrayOfAlertInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAlertInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AlertInfo" nillable="true" type="tns:AlertInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AlertInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFolder" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MarkAlertsAsRead">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkAlertsAsReadResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetReminder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reminder" type="tns:Reminder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Reminder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InitialDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Frequency" type="tns:ReminderFrequency" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ReminderFrequency">
+        <s:restriction base="s:string">
+          <s:enumeration value="OnceOnly" />
+          <s:enumeration value="Daily" />
+          <s:enumeration value="Weekly" />
+          <s:enumeration value="Quarterly" />
+          <s:enumeration value="BiAnnually" />
+          <s:enumeration value="Annually" />
+          <s:enumeration value="Monthly" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SetReminderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetReminderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateReminder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reminderId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="reminder" type="tns:Reminder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateReminderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveReminder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reminderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveReminderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetReminders">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRemindersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRemindersResult" type="tns:ArrayOfReminderInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfReminderInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReminderInfo" nillable="true" type="tns:ReminderInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReminderInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Reminder">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ReminderId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetReminderDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reminderId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReminderDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReminderDetailsResult" type="tns:Reminder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkRemindersAsRead">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectionId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkRemindersAsReadResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetWorkflowNotificationsSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WorkflowNotificationsSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TaskInitiator" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskAssignedOrDelegated" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskOverdue" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskOverridden" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskCancelled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityCompleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityCompletedDocumentOwn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowCompleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObservedWorkflowCompleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskBlocked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskRestarted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskDocumentAddedRemoved" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskDocumentCheckedOutIn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowRestarted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObservedWorkflowRestarted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentAddedRemoved" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObservedDocumentAddedRemoved" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailAlertFrequency" type="tns:AlertFrequency" />
+          <s:element minOccurs="1" maxOccurs="1" name="DelegateToUser" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskInitiatorIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskAssignedOrDelegatedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskOverdueIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskOverriddenIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskCancelledIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityCompletedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityCompletedDocumentOwnIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowCompletedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObservedWorkflowCompletedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskBlockedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskRestartedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskDocumentAddedRemovedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskDocumentCheckedOutInIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowRestartedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObservedWorkflowRestartedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentAddedRemovedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ObservedDocumentAddedRemovedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailAlertFrequencyIsSystem" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetWorkflowNotificationsSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserWorkflowNotificationSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserWorkflowNotificationSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetWorkflowNotificationsSystemSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetWorkflowNotificationsSystemSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetWorkflowNotificationsSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetWorkflowNotificationsSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetWorkflowNotificationsSystemSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetWorkflowNotificationsSystemSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkflowNotificationsSystemSettingsResult" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkflowNotificationsSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetWorkflowNotificationsSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkflowNotificationsSettingsResult" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserWorkflowNotificationsSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserWorkflowNotificationsSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserWorkflowNotificationsSettingsResult" type="tns:WorkflowNotificationsSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDefaultTimeZone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="timeShift" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDefaultTimeZoneResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDefaultTimeZone">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDefaultTimeZoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDefaultTimeZoneResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTimeZone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="timeShift" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTimeZoneResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTimeZone">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTimeZoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTimeZoneResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserLanguage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserLanguageResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserPreferences">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userProfile" type="tns:UserProfile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetUserPreferencesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserLanguage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserLanguageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserLanguageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserPreferences">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserPreferencesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserPreferencesResult" type="tns:UserProfile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFDAAdvancedSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FDAAdvancedSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ShowWelcomeScreen" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultScreen" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxTransfers" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultClose" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeleteAfterAdd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeleteAfterCheckIn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageDownloadCopies" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageDownloadCheckOut" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageRemoveFiles" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageCleanUp" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendAutoTagged" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendMetadata" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecycleBin" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerAutoopenInbox" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerAutoopenRegular" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerSeparateTabs" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageSmartCheckInOut" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OneInManyViewers" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClickToTag" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowWelcomeScreenIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultScreenIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxTransfersIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultCloseIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeleteAfterAddIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeleteAfterCheckInIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageDownloadCopiesIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageDownloadCheckOutIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageRemoveFilesIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageCleanUpIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendAutoTaggedIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendMetadataIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecycleBinIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerAutoopenInboxIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerAutoopenRegularIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewerSeparateTabsIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageSmartCheckInOutIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OneInManyViewersIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClickToTagIsSystem" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetFDAAdvancedSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserFDAAdvancedSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserFDAAdvancedSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetFDAAdvancedSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFDAAdvancedSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetFDAAdvancedSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetFDAAdvancedSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFDAAdvancedSettingsSystem">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFDAAdvancedSettingsSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFDAAdvancedSettingsSystemResult" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFDAAdvancedSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFDAAdvancedSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFDAAdvancedSettingsResult" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserFDAAdvancedSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserFDAAdvancedSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserFDAAdvancedSettingsResult" type="tns:FDAAdvancedSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFastFindSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FastFindSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FastFindSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FastFindEnabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdateTemplates" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MouseSearch" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionSearch" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClipboardSearch" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScreenSearch" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FastFindEnabledIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdateTemplatesIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MouseSearchIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SelectionSearchIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClipboardSearchIsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScreenSearchIsSystem" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetFastFindSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetFastFindSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FastFindSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetFastFindSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetFastFindSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:FastFindSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetFastFindSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFastFindSettingsSystem">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFastFindSettingsSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFastFindSettingsSystemResult" type="tns:FastFindSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFastFindSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFastFindSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFastFindSettingsResult" type="tns:FastFindSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMiscSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMiscSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserMiscSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userGuid" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserMiscSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetMiscSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMiscSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResetMiscSettingsSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetMiscSettingsSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMiscSettingsSystem">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMiscSettingsSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMiscSettingsSystemResult" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMiscSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMiscSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMiscSettingsResult" type="tns:MiscSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetUserMiscSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserMiscSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMiscSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserMiscSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAdvancedSearchSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAdvancedSearchSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetAdvancedSearchSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAdvancedSearchSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserAdvancedSearchSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserAdvancedSearchSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetUserAdvancedSearchSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserAdvancedSearchSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAdvancedSearchSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAdvancedSearchSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="SetAdvancedSearchSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAdvancedSearchSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetAdvancedSearchSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetAdvancedSearchSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="ResetAdvancedSearchSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetAdvancedSearchSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAdvancedSearchSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdvancedSearchSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetAdvancedSearchSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdvancedSearchSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAdvancedSearchSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdvancedSearchSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetAdvancedSearchSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdvancedSearchSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAdvancedSearchSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserAdvancedSearchSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAdvancedSearchSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserAdvancedSearchSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDontShowMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDontShowMessage" />
+  </wsdl:message>
+  <wsdl:message name="GetDontShowMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDontShowMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="DontShowMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:DontShowMessage" />
+  </wsdl:message>
+  <wsdl:message name="DontShowMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:DontShowMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetAllMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetAllMessages" />
+  </wsdl:message>
+  <wsdl:message name="ResetAllMessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetAllMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDownloadPreferencesInWebClientSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDownloadPreferencesInWebClient" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDownloadPreferencesInWebClientSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDownloadPreferencesInWebClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDownloadPreferencesInWebClientSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserDownloadPreferencesInWebClient" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDownloadPreferencesInWebClientSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserDownloadPreferencesInWebClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemFields" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSchemaFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchemaFields" />
+  </wsdl:message>
+  <wsdl:message name="GetSchemaFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchemaFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViews" />
+  </wsdl:message>
+  <wsdl:message name="GetViewsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViewsForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetViewsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViewDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetViewDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewDetailsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViewDetailsForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetViewDetailsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewDetailsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddViewSoapIn">
+    <wsdl:part name="parameters" element="tns:AddView" />
+  </wsdl:message>
+  <wsdl:message name="AddViewSoapOut">
+    <wsdl:part name="parameters" element="tns:AddViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddViewForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddViewForUser" />
+  </wsdl:message>
+  <wsdl:message name="AddViewForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddViewForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateViewSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateView" />
+  </wsdl:message>
+  <wsdl:message name="UpdateViewSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFixedViewPageSizeSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFixedViewPageSize" />
+  </wsdl:message>
+  <wsdl:message name="SetFixedViewPageSizeSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFixedViewPageSizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveViewSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveView" />
+  </wsdl:message>
+  <wsdl:message name="RemoveViewSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="SavePersonalViewSoapIn">
+    <wsdl:part name="parameters" element="tns:SavePersonalView" />
+  </wsdl:message>
+  <wsdl:message name="SavePersonalViewSoapOut">
+    <wsdl:part name="parameters" element="tns:SavePersonalViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultViewForContextSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultViewForContext" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultViewForContextSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultViewForContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetParentViewForContextSoapIn">
+    <wsdl:part name="parameters" element="tns:GetParentViewForContext" />
+  </wsdl:message>
+  <wsdl:message name="GetParentViewForContextSoapOut">
+    <wsdl:part name="parameters" element="tns:GetParentViewForContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDefaultViewForContextSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDefaultViewForContext" />
+  </wsdl:message>
+  <wsdl:message name="SetDefaultViewForContextSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDefaultViewForContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViewSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetViewSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCustomViewSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCustomView" />
+  </wsdl:message>
+  <wsdl:message name="SetCustomViewSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCustomViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDefaultViewSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDefaultView" />
+  </wsdl:message>
+  <wsdl:message name="SetDefaultViewSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDefaultViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomViewSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomView" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomViewSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetCustomViewSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetCustomView" />
+  </wsdl:message>
+  <wsdl:message name="ResetCustomViewSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetCustomViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewPageSizeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViewPageSize" />
+  </wsdl:message>
+  <wsdl:message name="GetViewPageSizeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewPageSizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveADAMObjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveADAMObjects" />
+  </wsdl:message>
+  <wsdl:message name="RemoveADAMObjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveADAMObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAlertSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAlertSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetAlertSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAlertSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserAlertSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserAlertSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetUserAlertSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserAlertSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAlertSystemSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAlertSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetAlertSystemSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAlertSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetAlertSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetAlertSettings" />
+  </wsdl:message>
+  <wsdl:message name="ResetAlertSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetAlertSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertSystemSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlertSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertSystemSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlertSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlertSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlertSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAlertSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserAlertSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAlertSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserAlertSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAlert" />
+  </wsdl:message>
+  <wsdl:message name="AddAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveAlert" />
+  </wsdl:message>
+  <wsdl:message name="RemoveAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlerts" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkAlertsAsReadSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkAlertsAsRead" />
+  </wsdl:message>
+  <wsdl:message name="MarkAlertsAsReadSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkAlertsAsReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetReminderSoapIn">
+    <wsdl:part name="parameters" element="tns:SetReminder" />
+  </wsdl:message>
+  <wsdl:message name="SetReminderSoapOut">
+    <wsdl:part name="parameters" element="tns:SetReminderResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateReminderSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateReminder" />
+  </wsdl:message>
+  <wsdl:message name="UpdateReminderSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateReminderResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveReminderSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveReminder" />
+  </wsdl:message>
+  <wsdl:message name="RemoveReminderSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveReminderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRemindersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReminders" />
+  </wsdl:message>
+  <wsdl:message name="GetRemindersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRemindersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReminderDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReminderDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetReminderDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReminderDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkRemindersAsReadSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkRemindersAsRead" />
+  </wsdl:message>
+  <wsdl:message name="MarkRemindersAsReadSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkRemindersAsReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetWorkflowNotificationsSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetWorkflowNotificationsSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetWorkflowNotificationsSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetWorkflowNotificationsSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserWorkflowNotificationSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserWorkflowNotificationSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetUserWorkflowNotificationSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserWorkflowNotificationSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetWorkflowNotificationsSystemSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetWorkflowNotificationsSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetWorkflowNotificationsSystemSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetWorkflowNotificationsSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetWorkflowNotificationsSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetWorkflowNotificationsSettings" />
+  </wsdl:message>
+  <wsdl:message name="ResetWorkflowNotificationsSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetWorkflowNotificationsSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowNotificationsSystemSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkflowNotificationsSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowNotificationsSystemSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkflowNotificationsSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowNotificationsSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkflowNotificationsSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkflowNotificationsSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkflowNotificationsSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserWorkflowNotificationsSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserWorkflowNotificationsSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetUserWorkflowNotificationsSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserWorkflowNotificationsSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDefaultTimeZoneSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDefaultTimeZone" />
+  </wsdl:message>
+  <wsdl:message name="SetDefaultTimeZoneSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDefaultTimeZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultTimeZoneSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultTimeZone" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultTimeZoneSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultTimeZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTimeZoneSoapIn">
+    <wsdl:part name="parameters" element="tns:SetTimeZone" />
+  </wsdl:message>
+  <wsdl:message name="SetTimeZoneSoapOut">
+    <wsdl:part name="parameters" element="tns:SetTimeZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZoneSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeZone" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZoneSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserLanguageSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserLanguage" />
+  </wsdl:message>
+  <wsdl:message name="SetUserLanguageSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserPreferencesSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserPreferences" />
+  </wsdl:message>
+  <wsdl:message name="SetUserPreferencesSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserPreferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserLanguageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserLanguage" />
+  </wsdl:message>
+  <wsdl:message name="GetUserLanguageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPreferencesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserPreferences" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPreferencesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserPreferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFDAAdvancedSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFDAAdvancedSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetFDAAdvancedSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFDAAdvancedSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserFDAAdvancedSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserFDAAdvancedSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetUserFDAAdvancedSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserFDAAdvancedSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFDAAdvancedSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFDAAdvancedSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="SetFDAAdvancedSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFDAAdvancedSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetFDAAdvancedSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetFDAAdvancedSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="ResetFDAAdvancedSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetFDAAdvancedSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFDAAdvancedSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFDAAdvancedSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetFDAAdvancedSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFDAAdvancedSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFDAAdvancedSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFDAAdvancedSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetFDAAdvancedSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFDAAdvancedSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserFDAAdvancedSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserFDAAdvancedSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetUserFDAAdvancedSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserFDAAdvancedSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFastFindSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFastFindSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetFastFindSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFastFindSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetFastFindSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:SetFastFindSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="SetFastFindSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:SetFastFindSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetFastFindSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetFastFindSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="ResetFastFindSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetFastFindSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFastFindSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFastFindSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetFastFindSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFastFindSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFastFindSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFastFindSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetFastFindSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFastFindSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMiscSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMiscSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetMiscSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMiscSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserMiscSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserMiscSettings" />
+  </wsdl:message>
+  <wsdl:message name="SetUserMiscSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserMiscSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMiscSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMiscSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="SetMiscSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMiscSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetMiscSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetMiscSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="ResetMiscSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetMiscSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMiscSettingsSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMiscSettingsSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetMiscSettingsSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMiscSettingsSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMiscSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMiscSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetMiscSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMiscSettingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UserPreferencesSoap">
+    <wsdl:operation name="GetUserMiscSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get specific user preferences for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:GetUserMiscSettingsSoapIn" />
+      <wsdl:output message="tns:GetUserMiscSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAdvancedSearchSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user preferences for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:SetAdvancedSearchSettingsSoapIn" />
+      <wsdl:output message="tns:SetAdvancedSearchSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAdvancedSearchSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set specific user preferences for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:SetUserAdvancedSearchSettingsSoapIn" />
+      <wsdl:output message="tns:SetUserAdvancedSearchSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAdvancedSearchSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set system settings for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:SetAdvancedSearchSettingsSystemSoapIn" />
+      <wsdl:output message="tns:SetAdvancedSearchSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetAdvancedSearchSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset user settings for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:ResetAdvancedSearchSettingsSystemSoapIn" />
+      <wsdl:output message="tns:ResetAdvancedSearchSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvancedSearchSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return system settings for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:GetAdvancedSearchSettingsSystemSoapIn" />
+      <wsdl:output message="tns:GetAdvancedSearchSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvancedSearchSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get user preferences for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:GetAdvancedSearchSettingsSoapIn" />
+      <wsdl:output message="tns:GetAdvancedSearchSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAdvancedSearchSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get specific user preferences for advanced search settings</wsdl:documentation>
+      <wsdl:input message="tns:GetUserAdvancedSearchSettingsSoapIn" />
+      <wsdl:output message="tns:GetUserAdvancedSearchSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDontShowMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if a specific message was marked not to be shown in the future.</wsdl:documentation>
+      <wsdl:input message="tns:GetDontShowMessageSoapIn" />
+      <wsdl:output message="tns:GetDontShowMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DontShowMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mark the message not to be shown in the future for current user.</wsdl:documentation>
+      <wsdl:input message="tns:DontShowMessageSoapIn" />
+      <wsdl:output message="tns:DontShowMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetAllMessages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mark all messages to be shown in the future.</wsdl:documentation>
+      <wsdl:input message="tns:ResetAllMessagesSoapIn" />
+      <wsdl:output message="tns:ResetAllMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDownloadPreferencesInWebClient">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return default document action in Web Client</wsdl:documentation>
+      <wsdl:input message="tns:GetUserDownloadPreferencesInWebClientSoapIn" />
+      <wsdl:output message="tns:GetUserDownloadPreferencesInWebClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserDownloadPreferencesInWebClient">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set default document action in Web Client</wsdl:documentation>
+      <wsdl:input message="tns:SetUserDownloadPreferencesInWebClientSoapIn" />
+      <wsdl:output message="tns:SetUserDownloadPreferencesInWebClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemFields">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get column definitions of all available system fields for the given container type.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemFieldsSoapIn" />
+      <wsdl:output message="tns:GetSystemFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemaFields">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return column definitions for all fields defined in all document schemas.</wsdl:documentation>
+      <wsdl:input message="tns:GetSchemaFieldsSoapIn" />
+      <wsdl:output message="tns:GetSchemaFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViews">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all views for given container type.</wsdl:documentation>
+      <wsdl:input message="tns:GetViewsSoapIn" />
+      <wsdl:output message="tns:GetViewsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all views for given container type for specified user.</wsdl:documentation>
+      <wsdl:input message="tns:GetViewsForUserSoapIn" />
+      <wsdl:output message="tns:GetViewsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return details of the given view.</wsdl:documentation>
+      <wsdl:input message="tns:GetViewDetailsSoapIn" />
+      <wsdl:output message="tns:GetViewDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewDetailsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return details of the given view that specified user has access to.</wsdl:documentation>
+      <wsdl:input message="tns:GetViewDetailsForUserSoapIn" />
+      <wsdl:output message="tns:GetViewDetailsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new personal or public view.</wsdl:documentation>
+      <wsdl:input message="tns:AddViewSoapIn" />
+      <wsdl:output message="tns:AddViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddViewForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a new personal view for specified user.</wsdl:documentation>
+      <wsdl:input message="tns:AddViewForUserSoapIn" />
+      <wsdl:output message="tns:AddViewForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify an existing personal or public view.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateViewSoapIn" />
+      <wsdl:output message="tns:UpdateViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFixedViewPageSize">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modify the page size for a fixed container type.</wsdl:documentation>
+      <wsdl:input message="tns:SetFixedViewPageSizeSoapIn" />
+      <wsdl:output message="tns:SetFixedViewPageSizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a personal or public view.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveViewSoapIn" />
+      <wsdl:output message="tns:RemoveViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePersonalView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create or update a personal view in given context.</wsdl:documentation>
+      <wsdl:input message="tns:SavePersonalViewSoapIn" />
+      <wsdl:output message="tns:SavePersonalViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultViewForContext">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve the default view in given context.</wsdl:documentation>
+      <wsdl:input message="tns:GetDefaultViewForContextSoapIn" />
+      <wsdl:output message="tns:GetDefaultViewForContextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParentViewForContext">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve the inherited view in given context.</wsdl:documentation>
+      <wsdl:input message="tns:GetParentViewForContextSoapIn" />
+      <wsdl:output message="tns:GetParentViewForContextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultViewForContext">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set the default view in given context.</wsdl:documentation>
+      <wsdl:input message="tns:SetDefaultViewForContextSoapIn" />
+      <wsdl:output message="tns:SetDefaultViewForContextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the default view for given folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetViewSettingsSoapIn" />
+      <wsdl:output message="tns:GetViewSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set custom view for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:SetCustomViewSoapIn" />
+      <wsdl:output message="tns:SetCustomViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set the default view for all users.</wsdl:documentation>
+      <wsdl:input message="tns:SetDefaultViewSoapIn" />
+      <wsdl:output message="tns:SetDefaultViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the custom view columns for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:GetCustomViewSoapIn" />
+      <wsdl:output message="tns:GetCustomViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetCustomView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete the custom view and use the default view.</wsdl:documentation>
+      <wsdl:input message="tns:ResetCustomViewSoapIn" />
+      <wsdl:output message="tns:ResetCustomViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPageSize">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the page size for a given view.</wsdl:documentation>
+      <wsdl:input message="tns:GetViewPageSizeSoapIn" />
+      <wsdl:output message="tns:GetViewPageSizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveADAMObjects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove given ADAM objects from the cache.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveADAMObjectsSoapIn" />
+      <wsdl:output message="tns:RemoveADAMObjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAlertSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user preferences for alerts</wsdl:documentation>
+      <wsdl:input message="tns:SetAlertSettingsSoapIn" />
+      <wsdl:output message="tns:SetAlertSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAlertSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set specific user preferences for alerts</wsdl:documentation>
+      <wsdl:input message="tns:SetUserAlertSettingsSoapIn" />
+      <wsdl:output message="tns:SetUserAlertSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAlertSystemSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set system settings for alerts</wsdl:documentation>
+      <wsdl:input message="tns:SetAlertSystemSettingsSoapIn" />
+      <wsdl:output message="tns:SetAlertSystemSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlertSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset user settings for alerts</wsdl:documentation>
+      <wsdl:input message="tns:ResetAlertSettingsSoapIn" />
+      <wsdl:output message="tns:ResetAlertSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertSystemSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return system settings for alerts</wsdl:documentation>
+      <wsdl:input message="tns:GetAlertSystemSettingsSoapIn" />
+      <wsdl:output message="tns:GetAlertSystemSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return user preferences for alerts</wsdl:documentation>
+      <wsdl:input message="tns:GetAlertSettingsSoapIn" />
+      <wsdl:output message="tns:GetAlertSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAlertSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get specific user preferences for alerts</wsdl:documentation>
+      <wsdl:input message="tns:GetUserAlertSettingsSoapIn" />
+      <wsdl:output message="tns:GetUserAlertSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAlert">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add document or folder to list of alerts</wsdl:documentation>
+      <wsdl:input message="tns:AddAlertSoapIn" />
+      <wsdl:output message="tns:AddAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAlert">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove document or folder from list of alerts</wsdl:documentation>
+      <wsdl:input message="tns:RemoveAlertSoapIn" />
+      <wsdl:output message="tns:RemoveAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return all alerts for the current user</wsdl:documentation>
+      <wsdl:input message="tns:GetAlertsSoapIn" />
+      <wsdl:output message="tns:GetAlertsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkAlertsAsRead">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mark selected alerts as read.</wsdl:documentation>
+      <wsdl:input message="tns:MarkAlertsAsReadSoapIn" />
+      <wsdl:output message="tns:MarkAlertsAsReadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetReminder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a reminder for a document.</wsdl:documentation>
+      <wsdl:input message="tns:SetReminderSoapIn" />
+      <wsdl:output message="tns:SetReminderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Change settings of a reminder.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateReminderSoapIn" />
+      <wsdl:output message="tns:UpdateReminderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveReminder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove document from list of reminders</wsdl:documentation>
+      <wsdl:input message="tns:RemoveReminderSoapIn" />
+      <wsdl:output message="tns:RemoveReminderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return a list of reminders for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:GetRemindersSoapIn" />
+      <wsdl:output message="tns:GetRemindersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return the details of a specific reminder.</wsdl:documentation>
+      <wsdl:input message="tns:GetReminderDetailsSoapIn" />
+      <wsdl:output message="tns:GetReminderDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkRemindersAsRead">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Mark selected reminders as read.</wsdl:documentation>
+      <wsdl:input message="tns:MarkRemindersAsReadSoapIn" />
+      <wsdl:output message="tns:MarkRemindersAsReadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetWorkflowNotificationsSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user preferences for workflow notifications</wsdl:documentation>
+      <wsdl:input message="tns:SetWorkflowNotificationsSettingsSoapIn" />
+      <wsdl:output message="tns:SetWorkflowNotificationsSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserWorkflowNotificationSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set specific user preferences for workflow notifications</wsdl:documentation>
+      <wsdl:input message="tns:SetUserWorkflowNotificationSettingsSoapIn" />
+      <wsdl:output message="tns:SetUserWorkflowNotificationSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetWorkflowNotificationsSystemSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set system settings for workflow notifications</wsdl:documentation>
+      <wsdl:input message="tns:SetWorkflowNotificationsSystemSettingsSoapIn" />
+      <wsdl:output message="tns:SetWorkflowNotificationsSystemSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetWorkflowNotificationsSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset user settings for workflow notification</wsdl:documentation>
+      <wsdl:input message="tns:ResetWorkflowNotificationsSettingsSoapIn" />
+      <wsdl:output message="tns:ResetWorkflowNotificationsSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowNotificationsSystemSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return system settings for workflow notification</wsdl:documentation>
+      <wsdl:input message="tns:GetWorkflowNotificationsSystemSettingsSoapIn" />
+      <wsdl:output message="tns:GetWorkflowNotificationsSystemSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowNotificationsSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get user preferences for workflow notifications</wsdl:documentation>
+      <wsdl:input message="tns:GetWorkflowNotificationsSettingsSoapIn" />
+      <wsdl:output message="tns:GetWorkflowNotificationsSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserWorkflowNotificationsSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get specific user preferences for workflow notifications</wsdl:documentation>
+      <wsdl:input message="tns:GetUserWorkflowNotificationsSettingsSoapIn" />
+      <wsdl:output message="tns:GetUserWorkflowNotificationsSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultTimeZone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is obsolete.</wsdl:documentation>
+      <wsdl:input message="tns:SetDefaultTimeZoneSoapIn" />
+      <wsdl:output message="tns:SetDefaultTimeZoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultTimeZone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is obsolete.</wsdl:documentation>
+      <wsdl:input message="tns:GetDefaultTimeZoneSoapIn" />
+      <wsdl:output message="tns:GetDefaultTimeZoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTimeZone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is obsolete.</wsdl:documentation>
+      <wsdl:input message="tns:SetTimeZoneSoapIn" />
+      <wsdl:output message="tns:SetTimeZoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is obsolete.</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeZoneSoapIn" />
+      <wsdl:output message="tns:GetTimeZoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserLanguage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set language preferences for the specified user.</wsdl:documentation>
+      <wsdl:input message="tns:SetUserLanguageSoapIn" />
+      <wsdl:output message="tns:SetUserLanguageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPreferences">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set preferences for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:SetUserPreferencesSoapIn" />
+      <wsdl:output message="tns:SetUserPreferencesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLanguage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return default language for the specified user.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserLanguageSoapIn" />
+      <wsdl:output message="tns:GetUserLanguageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPreferences">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return preferences for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserPreferencesSoapIn" />
+      <wsdl:output message="tns:GetUserPreferencesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFDAAdvancedSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user preferences for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:SetFDAAdvancedSettingsSoapIn" />
+      <wsdl:output message="tns:SetFDAAdvancedSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserFDAAdvancedSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set specific user preferences for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:SetUserFDAAdvancedSettingsSoapIn" />
+      <wsdl:output message="tns:SetUserFDAAdvancedSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFDAAdvancedSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set system settings for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:SetFDAAdvancedSettingsSystemSoapIn" />
+      <wsdl:output message="tns:SetFDAAdvancedSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetFDAAdvancedSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset user settings for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:ResetFDAAdvancedSettingsSystemSoapIn" />
+      <wsdl:output message="tns:ResetFDAAdvancedSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFDAAdvancedSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return system settings for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:GetFDAAdvancedSettingsSystemSoapIn" />
+      <wsdl:output message="tns:GetFDAAdvancedSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFDAAdvancedSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get user preferences for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:GetFDAAdvancedSettingsSoapIn" />
+      <wsdl:output message="tns:GetFDAAdvancedSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFDAAdvancedSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get specific user preferences for fda advanced settings</wsdl:documentation>
+      <wsdl:input message="tns:GetUserFDAAdvancedSettingsSoapIn" />
+      <wsdl:output message="tns:GetUserFDAAdvancedSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFastFindSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user preferences for fast find settings</wsdl:documentation>
+      <wsdl:input message="tns:SetFastFindSettingsSoapIn" />
+      <wsdl:output message="tns:SetFastFindSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetFastFindSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set system settings for fast find settings</wsdl:documentation>
+      <wsdl:input message="tns:SetFastFindSettingsSystemSoapIn" />
+      <wsdl:output message="tns:SetFastFindSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetFastFindSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset user settings for fast find settings</wsdl:documentation>
+      <wsdl:input message="tns:ResetFastFindSettingsSystemSoapIn" />
+      <wsdl:output message="tns:ResetFastFindSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFastFindSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return system settings for fast find settings</wsdl:documentation>
+      <wsdl:input message="tns:GetFastFindSettingsSystemSoapIn" />
+      <wsdl:output message="tns:GetFastFindSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFastFindSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get user preferences for fast find settings</wsdl:documentation>
+      <wsdl:input message="tns:GetFastFindSettingsSoapIn" />
+      <wsdl:output message="tns:GetFastFindSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMiscSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user preferences for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:SetMiscSettingsSoapIn" />
+      <wsdl:output message="tns:SetMiscSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMiscSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set specific user preferences for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:SetUserMiscSettingsSoapIn" />
+      <wsdl:output message="tns:SetUserMiscSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMiscSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set system settings for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:SetMiscSettingsSystemSoapIn" />
+      <wsdl:output message="tns:SetMiscSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetMiscSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Reset user settings for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:ResetMiscSettingsSystemSoapIn" />
+      <wsdl:output message="tns:ResetMiscSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMiscSettingsSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return system settings for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:GetMiscSettingsSystemSoapIn" />
+      <wsdl:output message="tns:GetMiscSettingsSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMiscSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get user preferences for misc settings</wsdl:documentation>
+      <wsdl:input message="tns:GetMiscSettingsSoapIn" />
+      <wsdl:output message="tns:GetMiscSettingsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserPreferencesSoap" type="tns:UserPreferencesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserMiscSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserMiscSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAdvancedSearchSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAdvancedSearchSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAdvancedSearchSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAdvancedSearchSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAdvancedSearchSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetAdvancedSearchSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvancedSearchSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAdvancedSearchSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvancedSearchSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAdvancedSearchSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDontShowMessage">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetDontShowMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DontShowMessage">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/DontShowMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAllMessages">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetAllMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDownloadPreferencesInWebClient">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserDownloadPreferencesInWebClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserDownloadPreferencesInWebClient">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserDownloadPreferencesInWebClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemFields">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetSystemFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemaFields">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetSchemaFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViews">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUser">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewDetails">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewDetailsForUser">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewDetailsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/AddView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddViewForUser">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/AddViewForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/UpdateView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFixedViewPageSize">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFixedViewPageSize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePersonalView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SavePersonalView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultViewForContext">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetDefaultViewForContext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParentViewForContext">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetParentViewForContext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultViewForContext">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetDefaultViewForContext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetCustomView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetDefaultView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetCustomView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetCustomView">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetCustomView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPageSize">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewPageSize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveADAMObjects">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveADAMObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlertSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAlertSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAlertSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserAlertSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlertSystemSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAlertSystemSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlertSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetAlertSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertSystemSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAlertSystemSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAlertSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAlertSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserAlertSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAlert">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/AddAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAlert">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkAlertsAsRead">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/MarkAlertsAsRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetReminder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetReminder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/UpdateReminder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveReminder">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveReminder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminders">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetReminders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderDetails">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetReminderDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkRemindersAsRead">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/MarkRemindersAsRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWorkflowNotificationsSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserWorkflowNotificationSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserWorkflowNotificationSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWorkflowNotificationsSystemSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetWorkflowNotificationsSystemSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetWorkflowNotificationsSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowNotificationsSystemSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetWorkflowNotificationsSystemSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowNotificationsSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserWorkflowNotificationsSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultTimeZone">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetDefaultTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultTimeZone">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetDefaultTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTimeZone">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZone">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserLanguage">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPreferences">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserPreferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLanguage">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPreferences">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserPreferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFDAAdvancedSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserFDAAdvancedSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFDAAdvancedSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFDAAdvancedSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetFDAAdvancedSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetFDAAdvancedSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFDAAdvancedSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFDAAdvancedSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFDAAdvancedSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFDAAdvancedSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFastFindSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFastFindSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFastFindSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFastFindSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetFastFindSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetFastFindSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFastFindSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFastFindSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFastFindSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFastFindSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMiscSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetMiscSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMiscSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserMiscSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMiscSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetMiscSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetMiscSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetMiscSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMiscSettingsSystem">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetMiscSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMiscSettings">
+      <soap:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetMiscSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UserPreferencesSoap12" type="tns:UserPreferencesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserMiscSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserMiscSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAdvancedSearchSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAdvancedSearchSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAdvancedSearchSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAdvancedSearchSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAdvancedSearchSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetAdvancedSearchSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvancedSearchSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAdvancedSearchSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvancedSearchSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAdvancedSearchSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserAdvancedSearchSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDontShowMessage">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetDontShowMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DontShowMessage">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/DontShowMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAllMessages">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetAllMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDownloadPreferencesInWebClient">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserDownloadPreferencesInWebClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserDownloadPreferencesInWebClient">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserDownloadPreferencesInWebClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemFields">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetSystemFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemaFields">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetSchemaFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViews">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewsForUser">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewDetails">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewDetailsForUser">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewDetailsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/AddView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddViewForUser">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/AddViewForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/UpdateView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFixedViewPageSize">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFixedViewPageSize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePersonalView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SavePersonalView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultViewForContext">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetDefaultViewForContext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParentViewForContext">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetParentViewForContext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultViewForContext">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetDefaultViewForContext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetCustomView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetDefaultView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetCustomView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetCustomView">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetCustomView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewPageSize">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetViewPageSize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveADAMObjects">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveADAMObjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlertSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAlertSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAlertSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserAlertSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlertSystemSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetAlertSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlertSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetAlertSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertSystemSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAlertSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAlertSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserAlertSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserAlertSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAlert">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/AddAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAlert">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetAlerts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkAlertsAsRead">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/MarkAlertsAsRead" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetReminder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetReminder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/UpdateReminder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveReminder">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/RemoveReminder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminders">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetReminders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderDetails">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetReminderDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkRemindersAsRead">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/MarkRemindersAsRead" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWorkflowNotificationsSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserWorkflowNotificationSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserWorkflowNotificationSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWorkflowNotificationsSystemSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetWorkflowNotificationsSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetWorkflowNotificationsSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowNotificationsSystemSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetWorkflowNotificationsSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkflowNotificationsSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserWorkflowNotificationsSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserWorkflowNotificationsSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultTimeZone">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetDefaultTimeZone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultTimeZone">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetDefaultTimeZone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTimeZone">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetTimeZone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZone">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetTimeZone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserLanguage">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserLanguage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPreferences">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserPreferences" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLanguage">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserLanguage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPreferences">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserPreferences" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFDAAdvancedSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserFDAAdvancedSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFDAAdvancedSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFDAAdvancedSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetFDAAdvancedSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetFDAAdvancedSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFDAAdvancedSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFDAAdvancedSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFDAAdvancedSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFDAAdvancedSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetUserFDAAdvancedSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFastFindSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFastFindSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFastFindSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetFastFindSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetFastFindSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetFastFindSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFastFindSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFastFindSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFastFindSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetFastFindSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMiscSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetMiscSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMiscSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetUserMiscSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMiscSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/SetMiscSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetMiscSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/ResetMiscSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMiscSettingsSystem">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetMiscSettingsSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMiscSettings">
+      <soap12:operation soapAction="http://filehold.com/librarymanager/userpreferences/GetMiscSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserPreferences">
+    <wsdl:port name="UserPreferencesSoap" binding="tns:UserPreferencesSoap">
+      <soap:address location="http://filehold/FH/FileHold/LibraryManager/UserPreferences.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UserPreferencesSoap12" binding="tns:UserPreferencesSoap12">
+      <soap12:address location="http://filehold/FH/FileHold/LibraryManager/UserPreferences.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

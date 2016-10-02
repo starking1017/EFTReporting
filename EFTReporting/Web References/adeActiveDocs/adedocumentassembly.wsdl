@@ -1,0 +1,1967 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.activedocs.com/webservices/adeDocumentAssembly" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.activedocs.com/webservices/adeDocumentAssembly" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.activedocs.com/webservices/adeDocumentAssembly">
+      <s:element name="IsComplete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsCompleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsCompleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompileStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompileStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCompileStatusResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentStatusResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkDocumentForDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkDocumentForDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MarkDocumentForDeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDocumentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentBytes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentBytesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentBytesResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetErrorDetailsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetErrorDetailsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetErrorDetailsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sADEJobXML" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartJobResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sJobID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJobStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentIDs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sJobID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentIDsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentIDsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sJobID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteJobResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetJobProgress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJobProgressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetJobProgressResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLogMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelJobResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAnswerFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sAnswerXML" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSubsiteName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAnswerFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetAnswerFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnswerFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnswerFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAnswerFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnswerFileAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sSnippetAttachmentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnswerFileAttachmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAnswerFileAttachmentResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDocumentBytes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yDocument" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDocumentBytesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sSearchFor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iFilterOption" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindDocumentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentProperties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentPropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentPropertiesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="yDocument" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSourceFormat" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iConvertToFormat" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sForInternalUse" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConvertDocumentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sSourceDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sQueueName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSettingOverrideXML" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliverDocumentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverDocumentPrintQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sSourceDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sQueueName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lCopies" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSubSiteName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverDocumentPrintQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliverDocumentPrintQueueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverDocumentEmailQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sSourceDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sQueueName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sToEmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFromEmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSubject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sBody" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iAttachDocumentOption" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSubSiteName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverDocumentEmailQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliverDocumentEmailQueueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliveryStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliveryStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDeliveryStatusResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverJobPrintQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sQueueName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="lCopies" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSubSiteName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverJobPrintQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeliverJobPrintQueueResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliveryProgress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDeliveryQueueName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtDeliveryDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliveryProgressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDeliveryProgressResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliveryJobProgress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sJobID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliveryJobProgressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDeliveryJobProgressResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PurgeDeliveryQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDeliveryQueueName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtBeforeDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PurgeDeliveryQueueResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnableDeliveryQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDeliveryQueueName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bResetLastRunTime" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnableDeliveryQueueResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DisableDeliveryQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDeliveryQueueName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableDeliveryQueueResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FinalizeDocumentOnUserBehalf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFinalizeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizeDocumentOnUserBehalfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FinalizeDocumentOnUserBehalfResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizeDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizeDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FinalizeDocumentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanDocumentSetBeFinalized">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentSetID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanDocumentSetBeFinalizedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CanDocumentSetBeFinalizedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDocumentWorkFlow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sWorkFlowXML" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDocumentWorkFlowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDocumentWorkFlow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentWorkFlowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentWorkFlowResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateWorkFlow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sTemplateID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateWorkFlowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateWorkFlowResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubsiteWorkFlow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sSubsiteID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubsiteWorkFlowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubsiteWorkFlowResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentApprove">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApprovalType" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sApproverUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sComment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentApproveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DocumentApproveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecallDocumentApproval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecallDocumentApprovalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RecallDocumentApprovalResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendDocumentForApproval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sApproverUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendDocumentForApprovalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendDocumentForApprovalResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentDocumentUsage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sApiKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentDocumentUsageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentDocumentUsageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveDocsEventLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iEntryType" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="sApiKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveDocsEventLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActiveDocsEventLogResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHealth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iCommand" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sApiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sTemplateID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSubSite" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckHealthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckHealthResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessDocumentsNow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sCallerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessDocumentsNowResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SPM_Ping">
+        <s:complexType />
+      </s:element>
+      <s:element name="SPM_PingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SPM_PingResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IsCompleteSoapIn">
+    <wsdl:part name="parameters" element="tns:IsComplete" />
+  </wsdl:message>
+  <wsdl:message name="IsCompleteSoapOut">
+    <wsdl:part name="parameters" element="tns:IsCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompileStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompileStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetCompileStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompileStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkDocumentForDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkDocumentForDelete" />
+  </wsdl:message>
+  <wsdl:message name="MarkDocumentForDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkDocumentForDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDocument" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentBytesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentBytes" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentBytesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentBytesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetErrorDetailsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetErrorDetailsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetErrorDetailsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetErrorDetailsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartJobSoapIn">
+    <wsdl:part name="parameters" element="tns:StartJob" />
+  </wsdl:message>
+  <wsdl:message name="StartJobSoapOut">
+    <wsdl:part name="parameters" element="tns:StartJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetJobStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentIDsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentIDs" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentIDsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteJobSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteJob" />
+  </wsdl:message>
+  <wsdl:message name="DeleteJobSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJobProgressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJobProgress" />
+  </wsdl:message>
+  <wsdl:message name="GetJobProgressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJobProgressResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelJobSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelJob" />
+  </wsdl:message>
+  <wsdl:message name="CancelJobSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAnswerFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAnswerFile" />
+  </wsdl:message>
+  <wsdl:message name="SetAnswerFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAnswerFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswerFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAnswerFile" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswerFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAnswerFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswerFileAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAnswerFileAttachment" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswerFileAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAnswerFileAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDocumentBytesSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDocumentBytes" />
+  </wsdl:message>
+  <wsdl:message name="SetDocumentBytesSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDocumentBytesResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:FindDocuments" />
+  </wsdl:message>
+  <wsdl:message name="FindDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:FindDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertDocument" />
+  </wsdl:message>
+  <wsdl:message name="ConvertDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliverDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliverDocument" />
+  </wsdl:message>
+  <wsdl:message name="DeliverDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliverDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliverDocumentPrintQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliverDocumentPrintQueue" />
+  </wsdl:message>
+  <wsdl:message name="DeliverDocumentPrintQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliverDocumentPrintQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliverDocumentEmailQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliverDocumentEmailQueue" />
+  </wsdl:message>
+  <wsdl:message name="DeliverDocumentEmailQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliverDocumentEmailQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeliveryStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeliveryStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliverJobPrintQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliverJobPrintQueue" />
+  </wsdl:message>
+  <wsdl:message name="DeliverJobPrintQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliverJobPrintQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryProgressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeliveryProgress" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryProgressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeliveryProgressResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryJobProgressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeliveryJobProgress" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryJobProgressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeliveryJobProgressResponse" />
+  </wsdl:message>
+  <wsdl:message name="PurgeDeliveryQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:PurgeDeliveryQueue" />
+  </wsdl:message>
+  <wsdl:message name="PurgeDeliveryQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:PurgeDeliveryQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnableDeliveryQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:EnableDeliveryQueue" />
+  </wsdl:message>
+  <wsdl:message name="EnableDeliveryQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:EnableDeliveryQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisableDeliveryQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:DisableDeliveryQueue" />
+  </wsdl:message>
+  <wsdl:message name="DisableDeliveryQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:DisableDeliveryQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeDocumentOnUserBehalfSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizeDocumentOnUserBehalf" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeDocumentOnUserBehalfSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizeDocumentOnUserBehalfResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizeDocument" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizeDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CanDocumentSetBeFinalizedSoapIn">
+    <wsdl:part name="parameters" element="tns:CanDocumentSetBeFinalized" />
+  </wsdl:message>
+  <wsdl:message name="CanDocumentSetBeFinalizedSoapOut">
+    <wsdl:part name="parameters" element="tns:CanDocumentSetBeFinalizedResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDocumentWorkFlowSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDocumentWorkFlow" />
+  </wsdl:message>
+  <wsdl:message name="SetDocumentWorkFlowSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDocumentWorkFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentWorkFlowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentWorkFlow" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentWorkFlowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentWorkFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateWorkFlowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateWorkFlow" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateWorkFlowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateWorkFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubsiteWorkFlowSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubsiteWorkFlow" />
+  </wsdl:message>
+  <wsdl:message name="GetSubsiteWorkFlowSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubsiteWorkFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentApproveSoapIn">
+    <wsdl:part name="parameters" element="tns:DocumentApprove" />
+  </wsdl:message>
+  <wsdl:message name="DocumentApproveSoapOut">
+    <wsdl:part name="parameters" element="tns:DocumentApproveResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecallDocumentApprovalSoapIn">
+    <wsdl:part name="parameters" element="tns:RecallDocumentApproval" />
+  </wsdl:message>
+  <wsdl:message name="RecallDocumentApprovalSoapOut">
+    <wsdl:part name="parameters" element="tns:RecallDocumentApprovalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendDocumentForApprovalSoapIn">
+    <wsdl:part name="parameters" element="tns:SendDocumentForApproval" />
+  </wsdl:message>
+  <wsdl:message name="SendDocumentForApprovalSoapOut">
+    <wsdl:part name="parameters" element="tns:SendDocumentForApprovalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDocumentUsageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentDocumentUsage" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDocumentUsageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentDocumentUsageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveDocsEventLogSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveDocsEventLog" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveDocsEventLogSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveDocsEventLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckHealthSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckHealth" />
+  </wsdl:message>
+  <wsdl:message name="CheckHealthSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckHealthResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessDocumentsNowSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcessDocumentsNow" />
+  </wsdl:message>
+  <wsdl:message name="ProcessDocumentsNowSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcessDocumentsNowResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPM_PingSoapIn">
+    <wsdl:part name="parameters" element="tns:SPM_Ping" />
+  </wsdl:message>
+  <wsdl:message name="SPM_PingSoapOut">
+    <wsdl:part name="parameters" element="tns:SPM_PingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="adeDocumentAssemblySoap">
+    <wsdl:operation name="IsComplete">
+      <wsdl:input message="tns:IsCompleteSoapIn" />
+      <wsdl:output message="tns:IsCompleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompileStatus">
+      <wsdl:input message="tns:GetCompileStatusSoapIn" />
+      <wsdl:output message="tns:GetCompileStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStatus">
+      <wsdl:input message="tns:GetDocumentStatusSoapIn" />
+      <wsdl:output message="tns:GetDocumentStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkDocumentForDelete">
+      <wsdl:input message="tns:MarkDocumentForDeleteSoapIn" />
+      <wsdl:output message="tns:MarkDocumentForDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <wsdl:input message="tns:DeleteDocumentSoapIn" />
+      <wsdl:output message="tns:DeleteDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentBytes">
+      <wsdl:input message="tns:GetDocumentBytesSoapIn" />
+      <wsdl:output message="tns:GetDocumentBytesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetErrorDetailsXML">
+      <wsdl:input message="tns:GetErrorDetailsXMLSoapIn" />
+      <wsdl:output message="tns:GetErrorDetailsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartJob">
+      <wsdl:input message="tns:StartJobSoapIn" />
+      <wsdl:output message="tns:StartJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobStatus">
+      <wsdl:input message="tns:GetJobStatusSoapIn" />
+      <wsdl:output message="tns:GetJobStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentIDs">
+      <wsdl:input message="tns:GetDocumentIDsSoapIn" />
+      <wsdl:output message="tns:GetDocumentIDsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteJob">
+      <wsdl:input message="tns:DeleteJobSoapIn" />
+      <wsdl:output message="tns:DeleteJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobProgress">
+      <wsdl:input message="tns:GetJobProgressSoapIn" />
+      <wsdl:output message="tns:GetJobProgressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelJob">
+      <wsdl:input message="tns:CancelJobSoapIn" />
+      <wsdl:output message="tns:CancelJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAnswerFile">
+      <wsdl:input message="tns:SetAnswerFileSoapIn" />
+      <wsdl:output message="tns:SetAnswerFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswerFile">
+      <wsdl:input message="tns:GetAnswerFileSoapIn" />
+      <wsdl:output message="tns:GetAnswerFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswerFileAttachment">
+      <wsdl:input message="tns:GetAnswerFileAttachmentSoapIn" />
+      <wsdl:output message="tns:GetAnswerFileAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentBytes">
+      <wsdl:input message="tns:SetDocumentBytesSoapIn" />
+      <wsdl:output message="tns:SetDocumentBytesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindDocuments">
+      <wsdl:input message="tns:FindDocumentsSoapIn" />
+      <wsdl:output message="tns:FindDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentProperties">
+      <wsdl:input message="tns:GetDocumentPropertiesSoapIn" />
+      <wsdl:output message="tns:GetDocumentPropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDocument">
+      <wsdl:input message="tns:ConvertDocumentSoapIn" />
+      <wsdl:output message="tns:ConvertDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocument">
+      <wsdl:input message="tns:DeliverDocumentSoapIn" />
+      <wsdl:output message="tns:DeliverDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocumentPrintQueue">
+      <wsdl:input message="tns:DeliverDocumentPrintQueueSoapIn" />
+      <wsdl:output message="tns:DeliverDocumentPrintQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocumentEmailQueue">
+      <wsdl:input message="tns:DeliverDocumentEmailQueueSoapIn" />
+      <wsdl:output message="tns:DeliverDocumentEmailQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryStatus">
+      <wsdl:input message="tns:GetDeliveryStatusSoapIn" />
+      <wsdl:output message="tns:GetDeliveryStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliverJobPrintQueue">
+      <wsdl:input message="tns:DeliverJobPrintQueueSoapIn" />
+      <wsdl:output message="tns:DeliverJobPrintQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryProgress">
+      <wsdl:input message="tns:GetDeliveryProgressSoapIn" />
+      <wsdl:output message="tns:GetDeliveryProgressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryJobProgress">
+      <wsdl:input message="tns:GetDeliveryJobProgressSoapIn" />
+      <wsdl:output message="tns:GetDeliveryJobProgressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PurgeDeliveryQueue">
+      <wsdl:input message="tns:PurgeDeliveryQueueSoapIn" />
+      <wsdl:output message="tns:PurgeDeliveryQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableDeliveryQueue">
+      <wsdl:input message="tns:EnableDeliveryQueueSoapIn" />
+      <wsdl:output message="tns:EnableDeliveryQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableDeliveryQueue">
+      <wsdl:input message="tns:DisableDeliveryQueueSoapIn" />
+      <wsdl:output message="tns:DisableDeliveryQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDocumentOnUserBehalf">
+      <wsdl:input message="tns:FinalizeDocumentOnUserBehalfSoapIn" />
+      <wsdl:output message="tns:FinalizeDocumentOnUserBehalfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDocument">
+      <wsdl:input message="tns:FinalizeDocumentSoapIn" />
+      <wsdl:output message="tns:FinalizeDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CanDocumentSetBeFinalized">
+      <wsdl:input message="tns:CanDocumentSetBeFinalizedSoapIn" />
+      <wsdl:output message="tns:CanDocumentSetBeFinalizedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentWorkFlow">
+      <wsdl:input message="tns:SetDocumentWorkFlowSoapIn" />
+      <wsdl:output message="tns:SetDocumentWorkFlowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentWorkFlow">
+      <wsdl:input message="tns:GetDocumentWorkFlowSoapIn" />
+      <wsdl:output message="tns:GetDocumentWorkFlowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateWorkFlow">
+      <wsdl:input message="tns:GetTemplateWorkFlowSoapIn" />
+      <wsdl:output message="tns:GetTemplateWorkFlowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubsiteWorkFlow">
+      <wsdl:input message="tns:GetSubsiteWorkFlowSoapIn" />
+      <wsdl:output message="tns:GetSubsiteWorkFlowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentApprove">
+      <wsdl:input message="tns:DocumentApproveSoapIn" />
+      <wsdl:output message="tns:DocumentApproveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecallDocumentApproval">
+      <wsdl:input message="tns:RecallDocumentApprovalSoapIn" />
+      <wsdl:output message="tns:RecallDocumentApprovalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDocumentForApproval">
+      <wsdl:input message="tns:SendDocumentForApprovalSoapIn" />
+      <wsdl:output message="tns:SendDocumentForApprovalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDocumentUsage">
+      <wsdl:input message="tns:GetCurrentDocumentUsageSoapIn" />
+      <wsdl:output message="tns:GetCurrentDocumentUsageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveDocsEventLog">
+      <wsdl:input message="tns:GetActiveDocsEventLogSoapIn" />
+      <wsdl:output message="tns:GetActiveDocsEventLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckHealth">
+      <wsdl:input message="tns:CheckHealthSoapIn" />
+      <wsdl:output message="tns:CheckHealthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDocumentsNow">
+      <wsdl:input message="tns:ProcessDocumentsNowSoapIn" />
+      <wsdl:output message="tns:ProcessDocumentsNowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPM_Ping">
+      <wsdl:input message="tns:SPM_PingSoapIn" />
+      <wsdl:output message="tns:SPM_PingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="adeDocumentAssemblySoap" type="tns:adeDocumentAssemblySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsComplete">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/IsComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompileStatus">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetCompileStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStatus">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkDocumentForDelete">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/MarkDocumentForDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeleteDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentBytes">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentBytes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetErrorDetailsXML">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetErrorDetailsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartJob">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/StartJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobStatus">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetJobStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentIDs">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentIDs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteJob">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeleteJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobProgress">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetJobProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelJob">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/CancelJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAnswerFile">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SetAnswerFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswerFile">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetAnswerFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswerFileAttachment">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetAnswerFileAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentBytes">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SetDocumentBytes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindDocuments">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/FindDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentProperties">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDocument">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/ConvertDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocument">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocumentPrintQueue">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverDocumentPrintQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocumentEmailQueue">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverDocumentEmailQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryStatus">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDeliveryStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverJobPrintQueue">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverJobPrintQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryProgress">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDeliveryProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryJobProgress">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDeliveryJobProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurgeDeliveryQueue">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/PurgeDeliveryQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableDeliveryQueue">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/EnableDeliveryQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableDeliveryQueue">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DisableDeliveryQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDocumentOnUserBehalf">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/FinalizeDocumentOnUserBehalf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDocument">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/FinalizeDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanDocumentSetBeFinalized">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/CanDocumentSetBeFinalized" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentWorkFlow">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SetDocumentWorkFlow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentWorkFlow">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentWorkFlow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateWorkFlow">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetTemplateWorkFlow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubsiteWorkFlow">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetSubsiteWorkFlow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentApprove">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DocumentApprove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecallDocumentApproval">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/RecallDocumentApproval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDocumentForApproval">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SendDocumentForApproval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDocumentUsage">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetCurrentDocumentUsage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveDocsEventLog">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetActiveDocsEventLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHealth">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/CheckHealth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDocumentsNow">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/ProcessDocumentsNow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPM_Ping">
+      <soap:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SPM_Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="adeDocumentAssemblySoap12" type="tns:adeDocumentAssemblySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsComplete">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/IsComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompileStatus">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetCompileStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStatus">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkDocumentForDelete">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/MarkDocumentForDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeleteDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentBytes">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentBytes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetErrorDetailsXML">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetErrorDetailsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartJob">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/StartJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobStatus">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetJobStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentIDs">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentIDs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteJob">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeleteJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobProgress">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetJobProgress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelJob">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/CancelJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAnswerFile">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SetAnswerFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswerFile">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetAnswerFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswerFileAttachment">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetAnswerFileAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentBytes">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SetDocumentBytes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindDocuments">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/FindDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentProperties">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDocument">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/ConvertDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocument">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocumentPrintQueue">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverDocumentPrintQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverDocumentEmailQueue">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverDocumentEmailQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryStatus">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDeliveryStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverJobPrintQueue">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DeliverJobPrintQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryProgress">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDeliveryProgress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryJobProgress">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDeliveryJobProgress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurgeDeliveryQueue">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/PurgeDeliveryQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableDeliveryQueue">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/EnableDeliveryQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableDeliveryQueue">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DisableDeliveryQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDocumentOnUserBehalf">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/FinalizeDocumentOnUserBehalf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDocument">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/FinalizeDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanDocumentSetBeFinalized">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/CanDocumentSetBeFinalized" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDocumentWorkFlow">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SetDocumentWorkFlow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentWorkFlow">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetDocumentWorkFlow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateWorkFlow">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetTemplateWorkFlow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubsiteWorkFlow">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetSubsiteWorkFlow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentApprove">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/DocumentApprove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecallDocumentApproval">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/RecallDocumentApproval" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDocumentForApproval">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SendDocumentForApproval" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentDocumentUsage">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetCurrentDocumentUsage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveDocsEventLog">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/GetActiveDocsEventLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckHealth">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/CheckHealth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDocumentsNow">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/ProcessDocumentsNow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPM_Ping">
+      <soap12:operation soapAction="http://www.activedocs.com/webservices/adeDocumentAssembly/SPM_Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="adeDocumentAssembly">
+    <wsdl:port name="adeDocumentAssemblySoap" binding="tns:adeDocumentAssemblySoap">
+      <soap:address location="http://cgybackup/activedocsdev/adedocumentassembly.asmx" />
+    </wsdl:port>
+    <wsdl:port name="adeDocumentAssemblySoap12" binding="tns:adeDocumentAssemblySoap12">
+      <soap12:address location="http://cgybackup/activedocsdev/adedocumentassembly.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

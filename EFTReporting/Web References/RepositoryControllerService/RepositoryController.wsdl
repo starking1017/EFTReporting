@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://filehold.com/documentrepository/repositorycontroller/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://filehold.com/documentrepository/repositorycontroller/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://filehold.com/documentrepository/repositorycontroller/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="CreateUploadToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUploadTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateUploadTokenResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileDataChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="chunk" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileDataChunkResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFileDataChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="buffer" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="position" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chunkSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileDataChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetFileDataChunkResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="buffer" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadFileDataChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="position" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="chunkSize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadFileDataChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadFileDataChunkResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RollbackFileCreation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="token" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RollbackFileCreationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddStorageLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="locationPath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddStorageLocationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetStorageLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="locationPath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStorageLocationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStorageLocation">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStorageLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStorageLocationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRepositoryLocations">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRepositoryLocationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRepositoryLocationsResult" type="tns:ArrayOfLocation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Location" nillable="true" type="tns:Location" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Location">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReadOnly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Freespace" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Capacity" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Threshold" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="CanDelete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageFillState" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRepositoryLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="repositoryId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRepositoryLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRepositoryLocationResult" type="tns:Location" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRepositoryLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="repositoryLocation" type="tns:Location" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRepositoryLocationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetRepositoryLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="repositoryLocation" type="tns:Location" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRepositoryLocationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckRepositoryLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="repositoryLocation" type="tns:Location" />
+            <s:element minOccurs="1" maxOccurs="1" name="delete" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckRepositoryLocationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLocationStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="path" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="capacity" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="freespace" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="defualtThreshold" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocationStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="capacity" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="freespace" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="defualtThreshold" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRepositoryLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="repositoryLocationId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRepositoryLocationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFileSize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="repFileId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileSizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetFileSizeResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateUploadTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUploadToken" />
+  </wsdl:message>
+  <wsdl:message name="CreateUploadTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUploadTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileDataChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFileDataChunk" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileDataChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileDataChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileDataChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileDataChunk" />
+  </wsdl:message>
+  <wsdl:message name="GetFileDataChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileDataChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadFileDataChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadFileDataChunk" />
+  </wsdl:message>
+  <wsdl:message name="DownloadFileDataChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadFileDataChunkResponse" />
+  </wsdl:message>
+  <wsdl:message name="RollbackFileCreationSoapIn">
+    <wsdl:part name="parameters" element="tns:RollbackFileCreation" />
+  </wsdl:message>
+  <wsdl:message name="RollbackFileCreationSoapOut">
+    <wsdl:part name="parameters" element="tns:RollbackFileCreationResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddStorageLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddStorageLocation" />
+  </wsdl:message>
+  <wsdl:message name="AddStorageLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddStorageLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetStorageLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:SetStorageLocation" />
+  </wsdl:message>
+  <wsdl:message name="SetStorageLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:SetStorageLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStorageLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStorageLocation" />
+  </wsdl:message>
+  <wsdl:message name="GetStorageLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStorageLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRepositoryLocationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRepositoryLocations" />
+  </wsdl:message>
+  <wsdl:message name="GetRepositoryLocationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRepositoryLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRepositoryLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRepositoryLocation" />
+  </wsdl:message>
+  <wsdl:message name="GetRepositoryLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRepositoryLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRepositoryLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRepositoryLocation" />
+  </wsdl:message>
+  <wsdl:message name="AddRepositoryLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRepositoryLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRepositoryLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRepositoryLocation" />
+  </wsdl:message>
+  <wsdl:message name="SetRepositoryLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRepositoryLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckRepositoryLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckRepositoryLocation" />
+  </wsdl:message>
+  <wsdl:message name="CheckRepositoryLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckRepositoryLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocationStatistics" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocationStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRepositoryLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRepositoryLocation" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRepositoryLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRepositoryLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSizeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileSize" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSizeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileSizeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RepositoryControllerSoap">
+    <wsdl:operation name="CreateUploadToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generate new upload token and create file in document repository</wsdl:documentation>
+      <wsdl:input message="tns:CreateUploadTokenSoapIn" />
+      <wsdl:output message="tns:CreateUploadTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileDataChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Append data from chunk to file.</wsdl:documentation>
+      <wsdl:input message="tns:UploadFileDataChunkSoapIn" />
+      <wsdl:output message="tns:UploadFileDataChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDataChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return data chunk from specified file</wsdl:documentation>
+      <wsdl:input message="tns:GetFileDataChunkSoapIn" />
+      <wsdl:output message="tns:GetFileDataChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileDataChunk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return data chunk from specified file</wsdl:documentation>
+      <wsdl:input message="tns:DownloadFileDataChunkSoapIn" />
+      <wsdl:output message="tns:DownloadFileDataChunkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RollbackFileCreation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Roll back creation of the file</wsdl:documentation>
+      <wsdl:input message="tns:RollbackFileCreationSoapIn" />
+      <wsdl:output message="tns:RollbackFileCreationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddStorageLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add new storage location to Document Repository</wsdl:documentation>
+      <wsdl:input message="tns:AddStorageLocationSoapIn" />
+      <wsdl:output message="tns:AddStorageLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStorageLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is no longer supported, use SetRepositoryLocation instead.</wsdl:documentation>
+      <wsdl:input message="tns:SetStorageLocationSoapIn" />
+      <wsdl:output message="tns:SetStorageLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStorageLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve location of the storage</wsdl:documentation>
+      <wsdl:input message="tns:GetStorageLocationSoapIn" />
+      <wsdl:output message="tns:GetStorageLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryLocations">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve configured repository locations.</wsdl:documentation>
+      <wsdl:input message="tns:GetRepositoryLocationsSoapIn" />
+      <wsdl:output message="tns:GetRepositoryLocationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve information about the specified repository location.</wsdl:documentation>
+      <wsdl:input message="tns:GetRepositoryLocationSoapIn" />
+      <wsdl:output message="tns:GetRepositoryLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRepositoryLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add the new repository locations.</wsdl:documentation>
+      <wsdl:input message="tns:AddRepositoryLocationSoapIn" />
+      <wsdl:output message="tns:AddRepositoryLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRepositoryLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Edit an existing repository locations.</wsdl:documentation>
+      <wsdl:input message="tns:SetRepositoryLocationSoapIn" />
+      <wsdl:output message="tns:SetRepositoryLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckRepositoryLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validates the specified repository locations.</wsdl:documentation>
+      <wsdl:input message="tns:CheckRepositoryLocationSoapIn" />
+      <wsdl:output message="tns:CheckRepositoryLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationStatistics">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a location's statistics.</wsdl:documentation>
+      <wsdl:input message="tns:GetLocationStatisticsSoapIn" />
+      <wsdl:output message="tns:GetLocationStatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepositoryLocation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete an existing repository locations.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteRepositoryLocationSoapIn" />
+      <wsdl:output message="tns:DeleteRepositoryLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileSize">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return size of file with specified id</wsdl:documentation>
+      <wsdl:input message="tns:GetFileSizeSoapIn" />
+      <wsdl:output message="tns:GetFileSizeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RepositoryControllerSoap" type="tns:RepositoryControllerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUploadToken">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/CreateUploadToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileDataChunk">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/UploadFileDataChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDataChunk">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetFileDataChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileDataChunk">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/DownloadFileDataChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RollbackFileCreation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/RollbackFileCreation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStorageLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/AddStorageLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStorageLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/SetStorageLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStorageLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetStorageLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryLocations">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetRepositoryLocations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRepositoryLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/AddRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRepositoryLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/SetRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRepositoryLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/CheckRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationStatistics">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetLocationStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepositoryLocation">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/DeleteRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileSize">
+      <soap:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetFileSize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RepositoryControllerSoap12" type="tns:RepositoryControllerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUploadToken">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/CreateUploadToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileDataChunk">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/UploadFileDataChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileDataChunk">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetFileDataChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileDataChunk">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/DownloadFileDataChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RollbackFileCreation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/RollbackFileCreation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStorageLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/AddStorageLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStorageLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/SetStorageLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStorageLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetStorageLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryLocations">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetRepositoryLocations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepositoryLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRepositoryLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/AddRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRepositoryLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/SetRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRepositoryLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/CheckRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationStatistics">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetLocationStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRepositoryLocation">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/DeleteRepositoryLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileSize">
+      <soap12:operation soapAction="http://filehold.com/documentrepository/repositorycontroller/GetFileSize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RepositoryController">
+    <wsdl:port name="RepositoryControllerSoap" binding="tns:RepositoryControllerSoap">
+      <soap:address location="http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RepositoryControllerSoap12" binding="tns:RepositoryControllerSoap12">
+      <soap12:address location="http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

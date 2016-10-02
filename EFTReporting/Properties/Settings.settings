@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EFTReporting.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EFTReporting_DocumentSchemaManagerService_DocumentSchemaManager" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/LibraryManager/DocumentSchemaManager.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_DocumentManagerService_DocumentManager" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/LibraryManager/DocumentManager.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_DocumentFinderService_DocumentFinder" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/LibraryManager/DocumentFinder.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_adeActiveDocs_adeDocumentAssembly" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://cgybackup/activedocsdev/adedocumentassembly.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_LibraryStructureManagerService_LibraryStructureManager" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/LibraryManager/LibraryStructureManager.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_RepositoryControllerService_RepositoryController" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/DocumentRepository/RepositoryController.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_SessionManagerService_SessionManager" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/UserRoleManager/SessionManager.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_UserPreferencesService_UserPreferences" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/LibraryManager/UserPreferences.asmx</Value>
+    </Setting>
+    <Setting Name="EFTReporting_WindowsLoginService_WindowsLogin" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://filehold/FH/FileHold/UserRoleManager/WindowsLogin.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
